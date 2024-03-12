@@ -527,7 +527,7 @@ MonoBehaviour:
   m_Follow: {fileID: 293918236}
   m_Lens:
     FieldOfView: 34
-    OrthographicSize: 4
+    OrthographicSize: 5
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -551,7 +551,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 154373715}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.32, y: 4.05, z: -11.705277}
+  m_LocalPosition: {x: 7.225, y: 4.05, z: -11.705277}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3596,6 +3596,8 @@ GameObject:
   m_Component:
   - component: {fileID: 293918236}
   - component: {fileID: 293918239}
+  - component: {fileID: 293918241}
+  - component: {fileID: 293918240}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -3611,7 +3613,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 293918235}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.32, y: 4.05, z: -1.7052773}
+  m_LocalPosition: {x: 7.225, y: 4.05, z: -1.7052773}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3641,6 +3643,35 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &293918240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 293918235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7bcc31fbc40b1d4c87033592f15312f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 669847384}
+  spriteRenderer: {fileID: 669847385}
+--- !u!114 &293918241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 293918235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf4521cb59bb6624dbf5665e61497e74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterCollider: {fileID: 669847386}
+  speed: 1
+  horizontalLayCount: 8
 --- !u!1 &371478477
 GameObject:
   m_ObjectHideFlags: 0
@@ -4138,7 +4169,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 3.9705882
+  orthographic size: 5.2941175
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -4162,7 +4193,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.3199987, y: 4.9705896, z: -11.705277}
+  m_LocalPosition: {x: 7.224996, y: 6.29412, z: -11.705277}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4705,7 +4736,7 @@ GameObject:
   - component: {fileID: 669847384}
   - component: {fileID: 669847386}
   m_Layer: 0
-  m_Name: Animatior
+  m_Name: Animator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
