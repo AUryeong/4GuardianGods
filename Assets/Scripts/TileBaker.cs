@@ -25,7 +25,8 @@ public class TileBaker : MonoBehaviour
             {
                 parent = transform,
                 localPosition = Vector2.zero
-            }
+            },
+            layer = 6
         };
         var childPolygon = colliderObj.AddComponent<PolygonCollider2D>();
 
@@ -56,17 +57,17 @@ public class TileBaker : MonoBehaviour
             childPolygon.SetPath(i, points.Take(path).ToArray());
         }
 
-        List<Vector2> polygonPoints = new()
+        var polygonPoints = new Vector2[4]
         {
-            new Vector2(Bounds.min.x + 1, Bounds.min.y + 1),
-            new Vector2(Bounds.min.x + 1, Bounds.max.y - 1),
-            new Vector2(Bounds.max.x - 1, Bounds.max.y - 1),
-            new Vector2(Bounds.max.x - 1, Bounds.min.y + 1)
+            new Vector2(Bounds.min.x, Bounds.min.y),
+            new Vector2(Bounds.min.x, Bounds.max.y),
+            new Vector2(Bounds.max.x, Bounds.max.y),
+            new Vector2(Bounds.max.x, Bounds.min.y)
         };
-        
+
         var thisPolygon = gameObject.GetOrAddComponent<PolygonCollider2D>();
         thisPolygon.isTrigger = true;
-        thisPolygon.points = polygonPoints.ToArray();
+        thisPolygon.points = polygonPoints;
 
         DestroyImmediate(compositeCollider2D);
         DestroyImmediate(rigid);

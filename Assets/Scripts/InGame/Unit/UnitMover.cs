@@ -27,17 +27,19 @@ namespace InGame.Unit
             var size = unitCollider.bounds.size;
 
             float face = Mathf.Sign(speedMultiplier);
-            float faceReverse = (speedMultiplier > 0) ? -1 : 1;
-            float spacing = size.y * 2 / (horizontalLayCount - 1);
-            float rayCastDistance = Mathf.Abs(moveDir.x) + size.x;
+            float spacing = size.y / (horizontalLayCount);
+            float rayCastDistance = Mathf.Abs(moveDir.x) + size.x / 2;
 
             for (int i = 0; i < horizontalLayCount; i++)
             {
-                Vector2 raycast = transform.position + new Vector3(centerPivot.x * faceReverse, i * spacing - size.y + centerPivot.y);
+                Vector2 raycast = new Vector3(centerPivot.x, i * spacing - size.y / 2 + centerPivot.y + spacing);
                 RaycastHit2D ray = Physics2D.Raycast(raycast, face * Vector2.right, rayCastDistance, LayerMask.GetMask("Platform"));
-                if (ray.collider != null) return;
+                if (ray.collider != null)
+                {
+                    return;
+                };
             }
-            transform.Translate(moveDir);
+            transform.Translate(moveDir, Space.World);
         }
     }
 }

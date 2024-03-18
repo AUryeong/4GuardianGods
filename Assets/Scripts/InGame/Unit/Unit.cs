@@ -19,10 +19,6 @@ namespace InGame.Unit
             if (unitAnimator != null)
                 unitAnimator = GetComponent<UnitAnimator>();
         }
-
-        protected virtual void Update()
-        {
-        }
     }
 
 }

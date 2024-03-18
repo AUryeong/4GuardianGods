@@ -1,3 +1,4 @@
+using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,7 +17,12 @@ namespace InGame.Unit
             if (animStateHash == animationHash) return;
 
             animStateHash = animationHash;
-            animator.CrossFade(animationHash, fixedDuration);
+            animator.Play(animationHash);
+        }
+
+        public void ChangeFlip(bool isFlip)
+        {
+            transform.rotation = isFlip ? Quaternion.Euler(0, 180, 0) : Quaternion.identity; 
         }
     }
 }
