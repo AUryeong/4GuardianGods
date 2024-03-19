@@ -5,24 +5,73 @@ using UnityEngine;
 
 namespace InGame.Unit
 {
-    public class UnitAnimator : MonoBehaviour
+    public enum UnitAnimationType
     {
-        private int animStateHash;
+        Idle,
+        Walk,
+        Jump,
+        Fall,
+        Special
+    }
 
+    public class UnitAnimator : SerializedMonoBehaviour
+    {
         [SerializeField] private Animator animator;
         [SerializeField] private SpriteRenderer spriteRenderer;
 
-        public void ChangeAnimState(int animationHash, float fixedDuration = 0.5f)
-        {
-            if (animStateHash == animationHash) return;
+        private int playAnimHash;
+        private int nextAnimStateHash;
 
-            animStateHash = animationHash;
+        [SerializeField]
+        private Dictionary<UnitAnimationType, AnimationClip> animationDict = new Dictionary<UnitAnimationType, AnimationClip>(5)
+        {
+            {UnitAnimationType.Idle, null},
+            {UnitAnimationType.Walk, null},
+            {UnitAnimationType.Jump, null},
+            {UnitAnimationType.Fall, null}
+        };
+
+        private Dictionary<UnitAnimationType, int> animationHashDict;
+        private Dictionary<UnitAnimationType, int> AnimationHashDict
+        {
+            get
+            {
+                if (animationHashDict == null)
+                {
+                    animationHashDict = new Dictionary<UnitAnimationType, int>(5);
+                    foreach (var pair in animationDict)
+                        animationHashDict.Add(pair.Key, Animator.StringToHash(pair.Value.name));
+                }
+                return animationHashDict;
+            }
+        }
+
+        public void Play(int animationHash)
+        {
+            playAnimHash = animationHash;
+            animator.Play(animationHash);
+        }
+
+        public void ChangeAnimState(UnitAnimationType type)
+        {
+            ChangeAnimState(AnimationHashDict[type]);
+        }
+
+        public void ChangeAnimState(int animationHash)
+        {
+            if (nextAnimStateHash == animationHash) return;
+            if (playAnimHash > 0)
+            {
+                nextAnimStateHash = animationHash;
+                return;
+            }
+
             animator.Play(animationHash);
         }
 
         public void ChangeFlip(bool isFlip)
         {
-            transform.rotation = isFlip ? Quaternion.Euler(0, 180, 0) : Quaternion.identity; 
+            transform.rotation = isFlip ? Quaternion.Euler(0, 180, 0) : Quaternion.identity;
         }
     }
 }

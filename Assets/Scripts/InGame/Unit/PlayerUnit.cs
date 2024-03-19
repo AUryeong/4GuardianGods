@@ -7,44 +7,23 @@ namespace InGame.Unit
 {
     public class PlayerUnit : Unit
     {
-        private void Update()
+        protected override void Update()
         {
             UpdateVelocity();
-            Move();
             UpdateAnimation();
+            unitMover.Move();
         }
 
         private void UpdateVelocity()
         {
-            velocity = Vector2.zero;
-
             float inputX = Input.GetAxisRaw("Horizontal");
-            velocity.x += inputX;
-        }
+            unitMover.velocity.x += inputX;
 
-        private void Move()
-        {
-            if (velocity.x != 0)
-                unitMover.Move(velocity.x);
-        }
-
-        private void UpdateAnimation()
-        {
-            if (velocity.y < 0)
+            if (Input.GetKeyDown(KeyCode.W))
             {
-                unitAnimator.ChangeAnimState(Animator.StringToHash("Fall"));
-                return;
-            }
-
-            if (velocity.x == 0)
-                unitAnimator.ChangeAnimState(Animator.StringToHash("Idle"));
-            else
-            {
-                unitAnimator.ChangeFlip(velocity.x > 0);
-                unitAnimator.ChangeAnimState(Animator.StringToHash("Walk"));
+                unitMover.Rigid.velocity = Vector2.up * 10;
+                unitAnimator.ChangeAnimState(UnitAnimationType.Jump);
             }
         }
-
-        private Vector2 velocity;
     }
 }

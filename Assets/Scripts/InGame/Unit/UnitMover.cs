@@ -12,34 +12,47 @@ namespace InGame.Unit
         [SerializeField] private Collider2D unitCollider;
 
         [Header("Value")]
+        public Vector2 velocity;
         public float speed;
         [Range(2, 15)]
         public int horizontalLayCount = 2;
 
-        public Rigidbody2D Rigid => rigid ??= GetComponent<Rigidbody2D>();
-        private Rigidbody2D rigid;
-
-        public void Move(float speedMultiplier = 1)
+        public Rigidbody2D Rigid
         {
-            var moveDir = new Vector2(speedMultiplier * Time.deltaTime * speed, 0);
+            get
+            {
+                if (rigid == null)
+                    rigid = GetComponent<Rigidbody2D>();
+                return rigid;
+            }
+        }
+        [SerializeField] private Rigidbody2D rigid;
+
+        public void Move()
+        {
+            if (velocity == Vector2.zero) return;
+
+            float speedMultiplier = Time.deltaTime * speed;
+            var moveDir = velocity * speedMultiplier;
 
             var centerPivot = unitCollider.bounds.center;
             var size = unitCollider.bounds.size;
 
-            float face = Mathf.Sign(speedMultiplier);
             float spacing = size.y / (horizontalLayCount);
             float rayCastDistance = Mathf.Abs(moveDir.x) + size.x / 2;
 
             for (int i = 0; i < horizontalLayCount; i++)
             {
                 Vector2 raycast = new Vector3(centerPivot.x, i * spacing - size.y / 2 + centerPivot.y + spacing);
-                RaycastHit2D ray = Physics2D.Raycast(raycast, face * Vector2.right, rayCastDistance, LayerMask.GetMask("Platform"));
+                RaycastHit2D ray = Physics2D.Raycast(raycast, velocity, rayCastDistance, LayerMask.GetMask("Platform"));
                 if (ray.collider != null)
                 {
+                    velocity = Vector2.zero;
                     return;
-                };
+                }
+                transform.Translate(moveDir, Space.World);
             }
-            transform.Translate(moveDir, Space.World);
+            velocity = Vector2.zero;
         }
     }
 }

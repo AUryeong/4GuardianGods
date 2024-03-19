@@ -11,14 +11,22 @@ namespace InGame.Unit
         [SerializeField] protected UnitMover unitMover;
         [SerializeField] protected UnitAnimator unitAnimator;
 
-        protected virtual void Awake()
+        protected virtual void Update()
         {
-            if (unitMover != null)
-                unitMover = GetComponent<UnitMover>();
+            UpdateAnimation();
+        }
 
-            if (unitAnimator != null)
-                unitAnimator = GetComponent<UnitAnimator>();
+        protected void UpdateAnimation()
+        {
+            if (unitMover.velocity.x != 0)
+                unitAnimator.ChangeFlip(unitMover.velocity.x > 0);
+
+            if (unitMover.Rigid.velocity.y > 0) return;
+
+            if (unitMover.Rigid.velocity.y < 0)
+                unitAnimator.ChangeAnimState(UnitAnimationType.Fall);
+            else
+                unitAnimator.ChangeAnimState((unitMover.velocity.x == 0) ? UnitAnimationType.Idle : UnitAnimationType.Walk);
         }
     }
-
 }
