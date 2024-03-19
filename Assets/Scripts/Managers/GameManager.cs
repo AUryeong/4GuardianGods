@@ -1,18 +1,10 @@
-﻿using Sirenix.OdinInspector;
+﻿using InGame.Unit;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class GameManager : SingletonBehavior<GameManager>
+namespace InGame
 {
-    private const int TARGET_FRAME_RATE = 60;
-    protected override bool IsDontDestroying => true;
-
-    protected override void OnCreated()
+    public class GameManager : SingletonBehavior<GameManager>
     {
-        base.OnCreated();
-
-        Application.targetFrameRate = TARGET_FRAME_RATE;
-        
-        DataManager.Instance.Init();
+        [SerializeField] private PlayerUnit playerUnit;
     }
 }
