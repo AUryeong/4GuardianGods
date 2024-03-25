@@ -44,7 +44,7 @@ namespace InGame.Unit
             for (int i = 0; i < horizontalLayCount; i++)
             {
                 Vector2 raycast = new Vector3(centerPivot.x, i * spacing - size.y / 2 + centerPivot.y + spacing);
-                RaycastHit2D ray = Physics2D.Raycast(raycast, velocity, rayCastDistance, LayerMask.GetMask("Platform"));
+                RaycastHit2D ray = Physics2D.Raycast(raycast, velocity, rayCastDistance, LayerMask.GetMask("Platform", "Brush"));
                 if (ray.collider != null)
                 {
                     velocity = Vector2.zero;

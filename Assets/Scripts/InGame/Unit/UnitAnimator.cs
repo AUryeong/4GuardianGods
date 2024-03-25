@@ -17,8 +17,8 @@ namespace InGame.Unit
     public class UnitAnimator : SerializedMonoBehaviour
     {
         [SerializeField] private SpriteRenderer spriteRenderer;
+        
         [Header("Value")]
-
         [SerializeField] private Dictionary<UnitAnimationType, UnitAnimationClip> animationDict = new(5)
         {
             { UnitAnimationType.Idle, null },
@@ -43,6 +43,7 @@ namespace InGame.Unit
                 spriteRenderer.transform.rotation = isFlip ? Quaternion.Euler(0, 180, 0) : Quaternion.identity;
             }
         }
+        
         private bool isFlip;
 
         public Action startCallBack;

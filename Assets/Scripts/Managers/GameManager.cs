@@ -5,6 +5,6 @@ namespace InGame
 {
     public class GameManager : SingletonBehavior<GameManager>
     {
-        [SerializeField] private PlayerUnit playerUnit;
+        public PlayerUnit playerUnit;
     }
 }
