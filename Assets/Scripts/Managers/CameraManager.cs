@@ -33,7 +33,7 @@ public class CameraManager : SingletonBehavior<CameraManager>
         if (index < 0) return;
 
         cameraBoundingShapes.RemoveAt(index);
-        if (index == 0)
+        if (index == 0 && cameraBoundingShapes.Count > 0)
             confiner2D.m_BoundingShape2D = cameraBoundingShapes[0];
     }
 }

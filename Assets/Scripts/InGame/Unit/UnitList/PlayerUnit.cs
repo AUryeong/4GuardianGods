@@ -10,8 +10,7 @@ namespace InGame.Unit
         protected override void Update()
         {
             UpdateVelocity();
-            UpdateAnimation();
-            unitMover.Move();
+            base.Update();
         }
 
         private void UpdateVelocity()
@@ -22,7 +21,7 @@ namespace InGame.Unit
             if (Input.GetKeyDown(KeyCode.W))
             {
                 unitMover.Rigid.velocity = Vector2.up * 10;
-                unitAnimator.ChangeAnimState(UnitAnimationType.Jump);
+                unitAnimator.SetAnimation(UnitAnimationType.Jump);
             }
         }
     }

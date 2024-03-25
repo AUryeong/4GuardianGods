@@ -1,6 +1,6 @@
-using Sirenix.OdinInspector;
-using System.Collections;
+using System;
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace InGame.Unit
@@ -16,62 +16,69 @@ namespace InGame.Unit
 
     public class UnitAnimator : SerializedMonoBehaviour
     {
-        [SerializeField] private Animator animator;
         [SerializeField] private SpriteRenderer spriteRenderer;
+        [Header("Value")]
 
-        private int playAnimHash;
-        private int nextAnimStateHash;
-
-        [SerializeField]
-        private Dictionary<UnitAnimationType, AnimationClip> animationDict = new Dictionary<UnitAnimationType, AnimationClip>(5)
+        [SerializeField] private Dictionary<UnitAnimationType, UnitAnimationClip> animationDict = new(5)
         {
-            {UnitAnimationType.Idle, null},
-            {UnitAnimationType.Walk, null},
-            {UnitAnimationType.Jump, null},
-            {UnitAnimationType.Fall, null}
+            { UnitAnimationType.Idle, null },
+            { UnitAnimationType.Walk, null },
+            { UnitAnimationType.Jump, null },
+            { UnitAnimationType.Fall, null }
         };
 
-        private Dictionary<UnitAnimationType, int> animationHashDict;
-        private Dictionary<UnitAnimationType, int> AnimationHashDict
+        private UnitAnimationClip playClip;
+
+        private float frame;
+        public int Frame => (int)frame;
+
+        public bool IsFlip
         {
-            get
+            set
             {
-                if (animationHashDict == null)
-                {
-                    animationHashDict = new Dictionary<UnitAnimationType, int>(5);
-                    foreach (var pair in animationDict)
-                        animationHashDict.Add(pair.Key, Animator.StringToHash(pair.Value.name));
-                }
-                return animationHashDict;
+                if (isFlip == value)
+                    return;
+
+                isFlip = value;
+                spriteRenderer.transform.rotation = isFlip ? Quaternion.Euler(0, 180, 0) : Quaternion.identity;
             }
         }
+        private bool isFlip;
 
-        public void Play(int animationHash)
+        public Action startCallBack;
+        public Action endCallBack;
+
+        public void SetAnimation(UnitAnimationType type, bool isResetFrame = true)
         {
-            playAnimHash = animationHash;
-            animator.Play(animationHash);
+            SetAnimationClip(animationDict[type]);
         }
 
-        public void ChangeAnimState(UnitAnimationType type)
+        public void SetAnimationClip(UnitAnimationClip animClip, bool isResetFrame = true)
         {
-            ChangeAnimState(AnimationHashDict[type]);
+            if (animClip == playClip) return;
+
+            playClip = animClip;
+            if (isResetFrame)
+                frame = 0;
+            else
+                frame %= animClip.MaxFrame;
         }
 
-        public void ChangeAnimState(int animationHash)
+        public void UpdateAnimation()
         {
-            if (nextAnimStateHash == animationHash) return;
-            if (playAnimHash > 0)
+            frame += Time.deltaTime * playClip.OneSecondPerFrame;
+
+            if (frame < 0.2f) return;
+
+            if (frame >= playClip.MaxFrame)
             {
-                nextAnimStateHash = animationHash;
-                return;
+                if (playClip.isLoop)
+                    frame = 0;
+                else
+                    return;
             }
 
-            animator.Play(animationHash);
-        }
-
-        public void ChangeFlip(bool isFlip)
-        {
-            transform.rotation = isFlip ? Quaternion.Euler(0, 180, 0) : Quaternion.identity;
+            spriteRenderer.sprite = playClip.GetSprite((int)frame);
         }
     }
 }

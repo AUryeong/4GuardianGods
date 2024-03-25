@@ -13,20 +13,22 @@ namespace InGame.Unit
 
         protected virtual void Update()
         {
-            UpdateAnimation();
+            UpdateAnimState();
+            unitAnimator.UpdateAnimation();
+            unitMover.Move();
         }
 
-        protected void UpdateAnimation()
+        protected void UpdateAnimState()
         {
             if (unitMover.velocity.x != 0)
-                unitAnimator.ChangeFlip(unitMover.velocity.x > 0);
+                unitAnimator.IsFlip = unitMover.velocity.x > 0;
 
             if (unitMover.Rigid.velocity.y > 0) return;
 
             if (unitMover.Rigid.velocity.y < 0)
-                unitAnimator.ChangeAnimState(UnitAnimationType.Fall);
+                unitAnimator.SetAnimation(UnitAnimationType.Fall);
             else
-                unitAnimator.ChangeAnimState((unitMover.velocity.x == 0) ? UnitAnimationType.Idle : UnitAnimationType.Walk);
+                unitAnimator.SetAnimation(unitMover.velocity.x == 0 ? UnitAnimationType.Idle : UnitAnimationType.Walk);
         }
     }
 }

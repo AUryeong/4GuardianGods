@@ -10,6 +10,7 @@ namespace InGame.Unit
     public class UnitMover : MonoBehaviour
     {
         [SerializeField] private Collider2D unitCollider;
+        [SerializeField] private Rigidbody2D rigid;
 
         [Header("Value")]
         public Vector2 velocity;
@@ -26,7 +27,6 @@ namespace InGame.Unit
                 return rigid;
             }
         }
-        [SerializeField] private Rigidbody2D rigid;
 
         public void Move()
         {
