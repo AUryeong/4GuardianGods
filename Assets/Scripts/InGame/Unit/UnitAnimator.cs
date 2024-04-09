@@ -16,10 +16,10 @@ namespace InGame.Unit
 
     public class UnitAnimator : SerializedMonoBehaviour
     {
-        [SerializeField] private SpriteRenderer spriteRenderer;
+        [SerializeField] protected SpriteRenderer spriteRenderer;
         
         [Header("Value")]
-        [SerializeField] private Dictionary<UnitAnimationType, UnitAnimationClip> animationDict = new(5)
+        [SerializeField] protected Dictionary<UnitAnimationType, UnitAnimationClip> animationDict = new(5)
         {
             { UnitAnimationType.Idle, null },
             { UnitAnimationType.Walk, null },
@@ -49,9 +49,9 @@ namespace InGame.Unit
         public Action startCallBack;
         public Action endCallBack;
 
-        public void SetAnimation(UnitAnimationType type, bool isResetFrame = true)
+        public virtual void SetAnimation(UnitAnimationType type, bool isResetFrame = true)
         {
-            SetAnimationClip(animationDict[type]);
+            SetAnimationClip(animationDict[type], isResetFrame);
         }
 
         public void SetAnimationClip(UnitAnimationClip animClip, bool isResetFrame = true)

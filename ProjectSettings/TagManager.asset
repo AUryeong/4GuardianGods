@@ -14,7 +14,7 @@ TagManager:
   - Platform
   - Map
   - Brush
-  - 
+  - Background
   - 
   - 
   - 
@@ -43,6 +43,9 @@ TagManager:
     locked: 0
   - name: Background
     uniqueID: 860361931
+    locked: 0
+  - name: Background_Object
+    uniqueID: 1095249259
     locked: 0
   - name: Character
     uniqueID: 3114658135

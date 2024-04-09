@@ -7,6 +7,14 @@ namespace InGame.Unit
 {
     public class PlayerUnit : Unit
     {
+        public bool IsDrawing
+        {
+            get
+            {
+                return Input.GetMouseButton(0);
+            }
+        }
+
         protected override void Update()
         {
             UpdateVelocity();
