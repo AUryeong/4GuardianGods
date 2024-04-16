@@ -6,12 +6,14 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
+[RequireComponent(typeof(Tilemap))]
+[RequireComponent(typeof(Map))]
 public class TileBaker : MonoBehaviour
 {
     [ShowInInspector] public Bounds Bounds { get; private set; }
 
     [Button("Bake")]
-    private void Bake()
+    public void Bake()
     {
         foreach (var polygon in gameObject.GetComponentsInChildren<PolygonCollider2D>())
         {
@@ -65,7 +67,7 @@ public class TileBaker : MonoBehaviour
             new Vector2(Bounds.max.x, Bounds.min.y)
         };
 
-        var thisPolygon = gameObject.transform.parent.GetOrAddComponent<PolygonCollider2D>();
+        var thisPolygon = gameObject.transform.GetOrAddComponent<PolygonCollider2D>();
         thisPolygon.isTrigger = true;
         thisPolygon.points = polygonPoints;
 
