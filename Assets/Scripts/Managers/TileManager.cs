@@ -47,8 +47,8 @@ public class TileManager : SingletonBehavior<TileManager>
 
                         if (max < 0)
                         {
-                            var splitcolor = splitTexture.GetPixel(x, y);
-                            if (splitcolor == Color.green)
+                            var splitColor = splitTexture.GetPixel(x, y);
+                            if (splitColor == Color.green)
                             {
                                 max = x;
                                 break;
@@ -60,8 +60,8 @@ public class TileManager : SingletonBehavior<TileManager>
                         }
                     }
                     {
-                        var splitcolor = splitTexture.GetPixel(j, y);
-                        if (splitcolor == Color.green)
+                        var splitColor = splitTexture.GetPixel(j, y);
+                        if (splitColor == Color.green)
                             break;
                     }
                 }
