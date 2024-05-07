@@ -1,18 +1,27 @@
 using Sirenix.OdinInspector;
+using Sirenix.Serialization;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+
+[System.Serializable]
+public class TileDrawer<T>
+{
+    [OdinSerialize] public Dictionary<Color, T> tileDict = new();
+    public Texture2D tileTexture;
+}
 
 public class TileManager : SingletonBehavior<TileManager>
 {
     [SerializeField] private Grid grid;
     [SerializeField] private Tilemap tileMap;
 
-    [SerializeField] private Dictionary<Color, TileBase> tileDict = new();
+    [NonSerialized, OdinSerialize] private TileDrawer<TileBase> defaultTile;
+    [NonSerialized, OdinSerialize] private TileDrawer<GameObject> backgroundTile;
 
-    public Texture2D tileTexture;
-    public Texture2D splitTexture;
+    [SerializeField] private Texture2D splitTexture;
 
     [Button(nameof(CreateTile))]
     private void CreateTile()
@@ -20,8 +29,8 @@ public class TileManager : SingletonBehavior<TileManager>
         foreach (var tilemap in grid.transform.GetComponentsInChildren<Tilemap>())
             DestroyImmediate(tilemap.gameObject);
 
-        int width = tileTexture.width;
-        int height = tileTexture.height;
+        int width = defaultTile.tileTexture.width;
+        int height = defaultTile.tileTexture.height;
 
         var vectors = new HashSet<Vector2Int>(width * height);
 
@@ -31,7 +40,8 @@ public class TileManager : SingletonBehavior<TileManager>
             {
                 if (vectors.Contains(new Vector2Int(j, i))) continue;
 
-                List<TileData> tileDatas = new List<TileData>();
+                List<TileData<TileBase>> tileDatas = new List<TileData<TileBase>>();
+                List<TileData<GameObject>> backgroundDatas = new List<TileData<GameObject>>();
                 int max = -1;
                 for (int y = i; y < height; y++)
                 {
@@ -41,17 +51,27 @@ public class TileManager : SingletonBehavior<TileManager>
 
                         vectors.Add(new Vector2Int(x, y));
 
-                        var tileColor = tileTexture.GetPixel(x, y);
-                        if (tileDict.TryGetValue(tileColor, out TileBase tileBase))
-                            tileDatas.Add(new TileData(new Vector3Int(x, y), tileBase));
+                        var tileColor = defaultTile.tileTexture.GetPixel(x, y);
+                        if (defaultTile.tileDict.TryGetValue(tileColor, out TileBase tileBase))
+                            tileDatas.Add(new TileData<TileBase>(new Vector3Int(x, y), tileBase));
+
+                        if (backgroundTile.tileDict.TryGetValue(backgroundTile.tileTexture.GetPixel(x,y), out GameObject backgroundData))
+                            backgroundDatas.Add(new TileData<GameObject>(new Vector3Int(x, y), backgroundData));
 
                         if (max < 0)
                         {
                             var splitColor = splitTexture.GetPixel(x, y);
                             if (splitColor == Color.green)
                             {
-                                max = x;
-                                break;
+                                for(int maxValue = x;maxValue < width; maxValue++)
+                                {
+                                    var color = splitTexture.GetPixel(maxValue, y);
+                                    if (color != Color.green)
+                                    {
+                                        max = maxValue;
+                                        break;
+                                    }
+                                }
                             }
                         }
                         else if (max <= x)
@@ -65,23 +85,37 @@ public class TileManager : SingletonBehavior<TileManager>
                             break;
                     }
                 }
-                if (tileDatas.Count <= 0) continue;
+                if (tileDatas.Count <= 0 && backgroundDatas.Count <= 0) continue;
 
                 var map = Instantiate(tileMap, grid.transform);
                 map.ClearAllTiles();
-                foreach (var tileData in tileDatas)
-                    map.SetTile(tileData.pos, tileData.tileBase);
-                map.GetComponent<TileBaker>().Bake();
+
+                if (tileDatas.Count > 0)
+                {
+                    foreach (var tileData in tileDatas)
+                        map.SetTile(tileData.pos, tileData.tileBase);
+                    map.GetComponent<TileBaker>().Bake();
+                }
+
+                if (backgroundDatas.Count > 0)
+                {
+                    foreach (var tileData in backgroundDatas)
+                    {
+                        var obj = Instantiate(tileData.tileBase, map.transform);
+                        obj.transform.position = tileData.pos;
+                    }
+                }
+                continue;
             }
         }
 
     }
-    public struct TileData
+    public struct TileData<T>
     {
         public Vector3Int pos;
-        public TileBase tileBase;
+        public T tileBase;
 
-        public TileData(Vector3Int pos, TileBase tileBase)
+        public TileData(Vector3Int pos, T tileBase)
         {
             this.pos = pos;
             this.tileBase = tileBase;

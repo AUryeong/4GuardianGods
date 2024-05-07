@@ -15,7 +15,7 @@ TagManager:
   - Map
   - Brush
   - Background
-  - 
+  - Velocity
   - 
   - 
   - 
@@ -55,4 +55,7 @@ TagManager:
     locked: 0
   - name: Tile
     uniqueID: 1098357689
+    locked: 0
+  - name: Velocity
+    uniqueID: 4185896643
     locked: 0

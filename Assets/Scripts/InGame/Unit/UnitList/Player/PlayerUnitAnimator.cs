@@ -24,9 +24,6 @@ namespace InGame.Unit
             isResetFrame = lastDrawing == isDrawing;
             lastDrawing = isDrawing;
 
-            if (!isResetFrame)
-                Debug.Log(type);
-
             if (isDrawing)
                 SetAnimationClip(brushAnimationDict[type], isResetFrame);
             else

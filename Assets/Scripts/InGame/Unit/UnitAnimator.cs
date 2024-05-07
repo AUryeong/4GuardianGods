@@ -57,6 +57,7 @@ namespace InGame.Unit
         public void SetAnimationClip(UnitAnimationClip animClip, bool isResetFrame = true)
         {
             if (animClip == playClip) return;
+            if (animClip == null) return;
 
             playClip = animClip;
             if (isResetFrame)

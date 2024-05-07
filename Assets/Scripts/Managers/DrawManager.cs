@@ -10,6 +10,8 @@ namespace InGame
         private Vector2 lastVector;
         [SerializeField] private LineRenderer lineRenderer;
         [SerializeField] private EdgeCollider2D edgeCollider;
+        [SerializeField] private SpriteRenderer lineSpriteRenderer;
+
         [SerializeField] private SpriteRenderer spriteRenderer;
         [SerializeField] private Rigidbody2D rigid;
 
@@ -26,13 +28,18 @@ namespace InGame
                 rigid.bodyType = RigidbodyType2D.Dynamic;
                 rigid.gravityScale = 1;
                 rigid.velocity = (pos - GameManager.Instance.playerUnit.transform.position) * 2;
+
+                Debug.Log(Mathf.Max(0, (MAX_DISTANCE-distance)/Mathf.Sqrt(edgeCollider.bounds.size.x * edgeCollider.bounds.size.y)));
+
+                lineSpriteRenderer.gameObject.SetActive(true);
+                lineSpriteRenderer.transform.localPosition = edgeCollider.bounds.center;
+                lineSpriteRenderer.size = edgeCollider.bounds.size;
             }
 
             if (Input.GetMouseButtonUp(0))
             {
                 Time.timeScale = 1f;
                 spriteRenderer.DOFade(0, 0.5f).SetUpdate(true);
-
 
                 var vector = new List<Vector2>(lineRenderer.positionCount);
                 for (int i = 0; i < lineRenderer.positionCount; i++)
@@ -58,6 +65,7 @@ namespace InGame
                 var pos = CameraManager.Instance.MainCamera.ScreenToWorldPoint(input);
                 pos.z = 0;
 
+                lineSpriteRenderer.gameObject.SetActive(false);
                 lineRenderer.SetPosition(0, pos);
                 lastVector = input;
             }
