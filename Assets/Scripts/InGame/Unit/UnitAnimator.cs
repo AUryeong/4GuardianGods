@@ -11,15 +11,20 @@ namespace InGame.Unit
         Walk,
         Jump,
         Fall,
-        Special
+        Special,
+        Special2,
+        Special3
     }
 
     public class UnitAnimator : SerializedMonoBehaviour
     {
+        protected const float ANIMATION_TRANSFORM_DELAY = 0.2f;
+
         [SerializeField] protected SpriteRenderer spriteRenderer;
-        
+
         [Header("Value")]
-        [SerializeField] protected Dictionary<UnitAnimationType, UnitAnimationClip> animationDict = new(5)
+        [SerializeField]
+        protected Dictionary<UnitAnimationType, UnitAnimationClip> animationDict = new(5)
         {
             { UnitAnimationType.Idle, null },
             { UnitAnimationType.Walk, null },
@@ -27,9 +32,18 @@ namespace InGame.Unit
             { UnitAnimationType.Fall, null }
         };
 
-        private UnitAnimationClip playClip;
+        public UnitAnimationClip PlayClip
+        {
+            get 
+            {
+                return playClip == null ? playStateClip : playClip;
+            }
+        }
 
-        private float frame;
+        protected UnitAnimationClip playClip;
+        protected UnitAnimationClip playStateClip;
+
+        protected float frame;
         public int Frame => (int)frame;
 
         public bool IsFlip
@@ -43,44 +57,55 @@ namespace InGame.Unit
                 spriteRenderer.transform.rotation = isFlip ? Quaternion.Euler(0, 180, 0) : Quaternion.identity;
             }
         }
-        
+
         private bool isFlip;
 
         public Action startCallBack;
         public Action endCallBack;
 
-        public virtual void SetAnimation(UnitAnimationType type, bool isResetFrame = true)
+        public virtual void SetAnimationState(UnitAnimationType type, bool isResetFrame = true)
         {
-            SetAnimationClip(animationDict[type], isResetFrame);
+            if (animationDict.TryGetValue(type, out var animationClip))
+                SetAnimationClip(ref playStateClip, animationClip, isResetFrame);
         }
 
-        public void SetAnimationClip(UnitAnimationClip animClip, bool isResetFrame = true)
+        public void PlayAnimationClip(UnitAnimationType type, bool isResetFrame = true)
         {
-            if (animClip == playClip) return;
-            if (animClip == null) return;
+            if (animationDict.TryGetValue(type, out var animationClip))
+                SetAnimationClip(ref playClip, animationClip, isResetFrame);
+        }
 
-            playClip = animClip;
+        public void SetAnimationClip(ref UnitAnimationClip refClip, UnitAnimationClip animClip, bool isResetFrame = true)
+        {
+            if (animClip == null) return;
+            if (animClip == refClip) return;
+
+            refClip = animClip;
+            if (playClip != null && playClip != refClip) return;
+
             if (isResetFrame)
                 frame = 0;
             else
                 frame %= animClip.MaxFrame;
         }
 
-        public void UpdateAnimation()
+        public void UpdateAnimation(float deltaTime)
         {
-            frame += Time.deltaTime * playClip.OneSecondPerFrame;
+            frame += deltaTime * PlayClip.OneSecondPerFrame;
 
-            if (frame < 0.2f) return;
+            if (frame < ANIMATION_TRANSFORM_DELAY) return;
 
-            if (frame >= playClip.MaxFrame)
+            if (frame >= PlayClip.MaxFrame)
             {
-                if (playClip.isLoop)
-                    frame = 0;
-                else
+                frame = 0;
+                if (PlayClip == playClip)
+                {
+                    playClip = null;
                     return;
+                }
             }
 
-            spriteRenderer.sprite = playClip.GetSprite((int)frame);
+            spriteRenderer.sprite = PlayClip.GetSprite((int)frame);
         }
     }
 }

@@ -1,3 +1,4 @@
+using InGame.Unit;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using System;
@@ -9,8 +10,8 @@ using UnityEngine.Tilemaps;
 [System.Serializable]
 public class TileDrawer<T>
 {
-    [OdinSerialize] public Dictionary<Color, T> tileDict = new();
     public Texture2D tileTexture;
+    [OdinSerialize] public Dictionary<Color, T> tileDict = new();
 }
 
 public class TileManager : SingletonBehavior<TileManager>
@@ -20,6 +21,7 @@ public class TileManager : SingletonBehavior<TileManager>
 
     [NonSerialized, OdinSerialize] private TileDrawer<TileBase> defaultTile;
     [NonSerialized, OdinSerialize] private TileDrawer<GameObject> backgroundTile;
+    [NonSerialized, OdinSerialize] private TileDrawer<GameObject> enemyTile = new();
 
     [SerializeField] private Texture2D splitTexture;
 
@@ -42,6 +44,7 @@ public class TileManager : SingletonBehavior<TileManager>
 
                 List<TileData<TileBase>> tileDatas = new List<TileData<TileBase>>();
                 List<TileData<GameObject>> backgroundDatas = new List<TileData<GameObject>>();
+                List<TileData<GameObject>> enemyDatas = new List<TileData<GameObject>>();
                 int max = -1;
                 for (int y = i; y < height; y++)
                 {
@@ -57,6 +60,9 @@ public class TileManager : SingletonBehavior<TileManager>
 
                         if (backgroundTile.tileDict.TryGetValue(backgroundTile.tileTexture.GetPixel(x,y), out GameObject backgroundData))
                             backgroundDatas.Add(new TileData<GameObject>(new Vector3Int(x, y), backgroundData));
+
+                        if (enemyTile.tileDict.TryGetValue(enemyTile.tileTexture.GetPixel(x, y), out GameObject enemyData))
+                            enemyDatas.Add(new TileData<GameObject>(new Vector3Int(x, y), enemyData));
 
                         if (max < 0)
                         {
@@ -90,6 +96,8 @@ public class TileManager : SingletonBehavior<TileManager>
                 var map = Instantiate(tileMap, grid.transform);
                 map.ClearAllTiles();
 
+                var mapComponent = map.GetComponent<Map>();
+
                 if (tileDatas.Count > 0)
                 {
                     foreach (var tileData in tileDatas)
@@ -103,6 +111,16 @@ public class TileManager : SingletonBehavior<TileManager>
                     {
                         var obj = Instantiate(tileData.tileBase, map.transform);
                         obj.transform.position = tileData.pos;
+                    }
+                }
+
+                if (enemyDatas.Count > 0)
+                {
+                    foreach (var enmyData in enemyDatas)
+                    {
+                        var obj = Instantiate(enmyData.tileBase, map.transform);
+                        obj.transform.position = enmyData.pos;
+                        mapComponent.enemies.Add(obj.GetComponent<Enemy>());
                     }
                 }
                 continue;

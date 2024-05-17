@@ -29,11 +29,15 @@ namespace InGame
                 rigid.gravityScale = 1;
                 rigid.velocity = (pos - GameManager.Instance.playerUnit.transform.position) * 2;
 
-                Debug.Log(Mathf.Max(0, (MAX_DISTANCE-distance)/Mathf.Sqrt(edgeCollider.bounds.size.x * edgeCollider.bounds.size.y)));
+                float power = Mathf.Max(0, (MAX_DISTANCE - distance) / Mathf.Sqrt(edgeCollider.bounds.size.x * edgeCollider.bounds.size.y));
+
+                Debug.Log(Mathf.Max(0, power));
 
                 lineSpriteRenderer.gameObject.SetActive(true);
                 lineSpriteRenderer.transform.localPosition = edgeCollider.bounds.center;
                 lineSpriteRenderer.size = edgeCollider.bounds.size;
+
+                CameraManager.Instance.Shake(0.5f, power/500f, power/200f);
             }
 
             if (Input.GetMouseButtonUp(0))

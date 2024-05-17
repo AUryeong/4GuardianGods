@@ -15,10 +15,13 @@ namespace InGame.Unit
             }
         }
 
-        protected override void Update()
+        private void Update()
         {
+            float deltaTime = Time.deltaTime;
             UpdateVelocity();
-            base.Update();
+            UpdateAnimState();
+            unitAnimator.UpdateAnimation(deltaTime);
+            unitMover.UpdateMove(deltaTime);
         }
 
         private void UpdateVelocity()
@@ -29,7 +32,7 @@ namespace InGame.Unit
             if (Input.GetKeyDown(KeyCode.W))
             {
                 unitMover.Rigid.velocity = Vector2.up * 10;
-                unitAnimator.SetAnimation(UnitAnimationType.Jump);
+                unitAnimator.PlayAnimationClip(UnitAnimationType.Jump);
             }
         }
     }

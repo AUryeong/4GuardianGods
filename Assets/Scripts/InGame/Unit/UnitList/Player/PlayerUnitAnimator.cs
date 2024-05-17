@@ -18,16 +18,16 @@ namespace InGame.Unit
 
         private bool lastDrawing = false;
 
-        public override void SetAnimation(UnitAnimationType type, bool isResetFrame = true)
+        public override void SetAnimationState(UnitAnimationType type, bool isResetFrame = true)
         {
             bool isDrawing = GameManager.Instance.playerUnit.IsDrawing;
             isResetFrame = lastDrawing == isDrawing;
             lastDrawing = isDrawing;
 
             if (isDrawing)
-                SetAnimationClip(brushAnimationDict[type], isResetFrame);
+                SetAnimationClip(ref playStateClip, brushAnimationDict[type], isResetFrame);
             else
-                SetAnimationClip(animationDict[type], isResetFrame);
+                SetAnimationClip(ref playStateClip, animationDict[type], isResetFrame);
         }
     }
 }

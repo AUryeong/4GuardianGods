@@ -11,13 +11,6 @@ namespace InGame.Unit
         [SerializeField] protected UnitMover unitMover;
         [SerializeField] protected UnitAnimator unitAnimator;
 
-        protected virtual void Update()
-        {
-            UpdateAnimState();
-            unitAnimator.UpdateAnimation();
-            unitMover.Move();
-        }
-
         protected void UpdateAnimState()
         {
             if (unitMover.velocity.x != 0)
@@ -26,9 +19,9 @@ namespace InGame.Unit
             if (unitMover.Rigid.velocity.y > 0) return;
 
             if (unitMover.Rigid.velocity.y < 0)
-                unitAnimator.SetAnimation(UnitAnimationType.Fall);
+                unitAnimator.SetAnimationState(UnitAnimationType.Fall);
             else
-                unitAnimator.SetAnimation(unitMover.velocity.x == 0 ? UnitAnimationType.Idle : UnitAnimationType.Walk);
+                unitAnimator.SetAnimationState(unitMover.velocity.x == 0 ? UnitAnimationType.Idle : UnitAnimationType.Walk);
         }
     }
 }

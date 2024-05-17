@@ -28,11 +28,11 @@ namespace InGame.Unit
             }
         }
 
-        public void Move()
+        public void UpdateMove(float deltaTime)
         {
             if (velocity == Vector2.zero) return;
 
-            float speedMultiplier = Time.deltaTime * speed;
+            float speedMultiplier = deltaTime * speed;
             var moveDir = velocity * speedMultiplier;
 
             var centerPivot = unitCollider.bounds.center;
