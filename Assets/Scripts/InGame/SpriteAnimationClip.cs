@@ -2,10 +2,10 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace InGame.Unit
+namespace InGame
 {
-    [CreateAssetMenu(fileName = "AnimationClip", menuName = "Unit/Animation", order = 0)]
-    public class UnitAnimationClip : ScriptableObject
+    [CreateAssetMenu(fileName = "AnimationClip", menuName = "Animation", order = 0)]
+    public class SpriteAnimationClip : ScriptableObject
     {
         [SerializeField] private Sprite[] animations;
 

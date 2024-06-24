@@ -8,7 +8,7 @@ namespace InGame.Unit
     {
         [Header("Brush Animation")]
         [SerializeField]
-        protected Dictionary<UnitAnimationType, UnitAnimationClip> brushAnimationDict = new(5)
+        protected Dictionary<UnitAnimationType, SpriteAnimationClip> brushAnimationDict = new(5)
         {
             { UnitAnimationType.Idle, null },
             { UnitAnimationType.Walk, null },

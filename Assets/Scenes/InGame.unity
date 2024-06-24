@@ -10945,19 +10945,22 @@ MonoBehaviour:
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects:
-    - {fileID: 11400000, guid: 1e1dbbbc8bb9d2740a50786d17c49597, type: 2}
-    - {fileID: 11400000, guid: a126f053602eec248a244adecf8aede8, type: 2}
-    - {fileID: 11400000, guid: 6e20dbb5f70ea504ba70237de0490289, type: 2}
+    ReferencedUnityObjects: []
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes:
+    - Name: startCallBack
+      Entry: 6
+      Data: 
+    - Name: endCallBack
+      Entry: 6
+      Data: 
     - Name: animationDict
       Entry: 7
       Data: 0|System.Collections.Generic.Dictionary`2[[InGame.Unit.UnitAnimationType,
-        Assembly-CSharp],[InGame.Unit.UnitAnimationClip, Assembly-CSharp]], mscorlib
+        Assembly-CSharp],[InGame.SpriteAnimationClip, Assembly-CSharp]], mscorlib
     - Name: comparer
       Entry: 7
       Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[InGame.Unit.UnitAnimationType,
@@ -10981,8 +10984,8 @@ MonoBehaviour:
       Entry: 3
       Data: 0
     - Name: $v
-      Entry: 10
-      Data: 0
+      Entry: 6
+      Data: 
     - Name: 
       Entry: 8
       Data: 
@@ -10993,8 +10996,8 @@ MonoBehaviour:
       Entry: 3
       Data: 1
     - Name: $v
-      Entry: 10
-      Data: 1
+      Entry: 6
+      Data: 
     - Name: 
       Entry: 8
       Data: 
@@ -11029,8 +11032,8 @@ MonoBehaviour:
       Entry: 3
       Data: 4
     - Name: $v
-      Entry: 10
-      Data: 2
+      Entry: 6
+      Data: 
     - Name: 
       Entry: 8
       Data: 
@@ -11039,12 +11042,6 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 8
-      Data: 
-    - Name: startCallBack
-      Entry: 6
-      Data: 
-    - Name: endCallBack
-      Entry: 6
       Data: 
   spriteRenderer: {fileID: 1387816267}
 --- !u!114 &292159171
@@ -11248,10 +11245,16 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes:
+    - Name: startCallBack
+      Entry: 6
+      Data: 
+    - Name: endCallBack
+      Entry: 6
+      Data: 
     - Name: animationDict
       Entry: 7
       Data: 0|System.Collections.Generic.Dictionary`2[[InGame.Unit.UnitAnimationType,
-        Assembly-CSharp],[InGame.Unit.UnitAnimationClip, Assembly-CSharp]], mscorlib
+        Assembly-CSharp],[InGame.SpriteAnimationClip, Assembly-CSharp]], mscorlib
     - Name: comparer
       Entry: 7
       Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[InGame.Unit.UnitAnimationType,
@@ -11322,16 +11325,10 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-    - Name: startCallBack
-      Entry: 6
-      Data: 
-    - Name: endCallBack
-      Entry: 6
-      Data: 
     - Name: brushAnimationDict
       Entry: 7
       Data: 2|System.Collections.Generic.Dictionary`2[[InGame.Unit.UnitAnimationType,
-        Assembly-CSharp],[InGame.Unit.UnitAnimationClip, Assembly-CSharp]], mscorlib
+        Assembly-CSharp],[InGame.SpriteAnimationClip, Assembly-CSharp]], mscorlib
     - Name: comparer
       Entry: 7
       Data: 3|System.Collections.Generic.EnumEqualityComparer`1[[InGame.Unit.UnitAnimationType,
@@ -12287,19 +12284,22 @@ MonoBehaviour:
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects:
-    - {fileID: 11400000, guid: 1e1dbbbc8bb9d2740a50786d17c49597, type: 2}
-    - {fileID: 11400000, guid: a126f053602eec248a244adecf8aede8, type: 2}
-    - {fileID: 11400000, guid: 6e20dbb5f70ea504ba70237de0490289, type: 2}
+    ReferencedUnityObjects: []
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes:
+    - Name: startCallBack
+      Entry: 6
+      Data: 
+    - Name: endCallBack
+      Entry: 6
+      Data: 
     - Name: animationDict
       Entry: 7
       Data: 0|System.Collections.Generic.Dictionary`2[[InGame.Unit.UnitAnimationType,
-        Assembly-CSharp],[InGame.Unit.UnitAnimationClip, Assembly-CSharp]], mscorlib
+        Assembly-CSharp],[InGame.SpriteAnimationClip, Assembly-CSharp]], mscorlib
     - Name: comparer
       Entry: 7
       Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[InGame.Unit.UnitAnimationType,
@@ -12323,8 +12323,8 @@ MonoBehaviour:
       Entry: 3
       Data: 0
     - Name: $v
-      Entry: 10
-      Data: 0
+      Entry: 6
+      Data: 
     - Name: 
       Entry: 8
       Data: 
@@ -12335,8 +12335,8 @@ MonoBehaviour:
       Entry: 3
       Data: 1
     - Name: $v
-      Entry: 10
-      Data: 1
+      Entry: 6
+      Data: 
     - Name: 
       Entry: 8
       Data: 
@@ -12371,8 +12371,8 @@ MonoBehaviour:
       Entry: 3
       Data: 4
     - Name: $v
-      Entry: 10
-      Data: 2
+      Entry: 6
+      Data: 
     - Name: 
       Entry: 8
       Data: 
@@ -12381,12 +12381,6 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 8
-      Data: 
-    - Name: startCallBack
-      Entry: 6
-      Data: 
-    - Name: endCallBack
-      Entry: 6
       Data: 
   spriteRenderer: {fileID: 817716475}
 --- !u!114 &369999748
@@ -21873,19 +21867,22 @@ MonoBehaviour:
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects:
-    - {fileID: 11400000, guid: 1e1dbbbc8bb9d2740a50786d17c49597, type: 2}
-    - {fileID: 11400000, guid: a126f053602eec248a244adecf8aede8, type: 2}
-    - {fileID: 11400000, guid: 6e20dbb5f70ea504ba70237de0490289, type: 2}
+    ReferencedUnityObjects: []
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes:
+    - Name: startCallBack
+      Entry: 6
+      Data: 
+    - Name: endCallBack
+      Entry: 6
+      Data: 
     - Name: animationDict
       Entry: 7
       Data: 0|System.Collections.Generic.Dictionary`2[[InGame.Unit.UnitAnimationType,
-        Assembly-CSharp],[InGame.Unit.UnitAnimationClip, Assembly-CSharp]], mscorlib
+        Assembly-CSharp],[InGame.SpriteAnimationClip, Assembly-CSharp]], mscorlib
     - Name: comparer
       Entry: 7
       Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[InGame.Unit.UnitAnimationType,
@@ -21909,8 +21906,8 @@ MonoBehaviour:
       Entry: 3
       Data: 0
     - Name: $v
-      Entry: 10
-      Data: 0
+      Entry: 6
+      Data: 
     - Name: 
       Entry: 8
       Data: 
@@ -21921,8 +21918,8 @@ MonoBehaviour:
       Entry: 3
       Data: 1
     - Name: $v
-      Entry: 10
-      Data: 1
+      Entry: 6
+      Data: 
     - Name: 
       Entry: 8
       Data: 
@@ -21957,8 +21954,8 @@ MonoBehaviour:
       Entry: 3
       Data: 4
     - Name: $v
-      Entry: 10
-      Data: 2
+      Entry: 6
+      Data: 
     - Name: 
       Entry: 8
       Data: 
@@ -21967,12 +21964,6 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 8
-      Data: 
-    - Name: startCallBack
-      Entry: 6
-      Data: 
-    - Name: endCallBack
-      Entry: 6
       Data: 
   spriteRenderer: {fileID: 493847327}
 --- !u!114 &862277335
@@ -26300,19 +26291,22 @@ MonoBehaviour:
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects:
-    - {fileID: 11400000, guid: 1e1dbbbc8bb9d2740a50786d17c49597, type: 2}
-    - {fileID: 11400000, guid: a126f053602eec248a244adecf8aede8, type: 2}
-    - {fileID: 11400000, guid: 6e20dbb5f70ea504ba70237de0490289, type: 2}
+    ReferencedUnityObjects: []
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes:
+    - Name: startCallBack
+      Entry: 6
+      Data: 
+    - Name: endCallBack
+      Entry: 6
+      Data: 
     - Name: animationDict
       Entry: 7
       Data: 0|System.Collections.Generic.Dictionary`2[[InGame.Unit.UnitAnimationType,
-        Assembly-CSharp],[InGame.Unit.UnitAnimationClip, Assembly-CSharp]], mscorlib
+        Assembly-CSharp],[InGame.SpriteAnimationClip, Assembly-CSharp]], mscorlib
     - Name: comparer
       Entry: 7
       Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[InGame.Unit.UnitAnimationType,
@@ -26336,8 +26330,8 @@ MonoBehaviour:
       Entry: 3
       Data: 0
     - Name: $v
-      Entry: 10
-      Data: 0
+      Entry: 6
+      Data: 
     - Name: 
       Entry: 8
       Data: 
@@ -26348,8 +26342,8 @@ MonoBehaviour:
       Entry: 3
       Data: 1
     - Name: $v
-      Entry: 10
-      Data: 1
+      Entry: 6
+      Data: 
     - Name: 
       Entry: 8
       Data: 
@@ -26384,8 +26378,8 @@ MonoBehaviour:
       Entry: 3
       Data: 4
     - Name: $v
-      Entry: 10
-      Data: 2
+      Entry: 6
+      Data: 
     - Name: 
       Entry: 8
       Data: 
@@ -26394,12 +26388,6 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 8
-      Data: 
-    - Name: startCallBack
-      Entry: 6
-      Data: 
-    - Name: endCallBack
-      Entry: 6
       Data: 
   spriteRenderer: {fileID: 59629106}
 --- !u!114 &1375617999
@@ -26566,19 +26554,22 @@ MonoBehaviour:
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects:
-    - {fileID: 11400000, guid: 1e1dbbbc8bb9d2740a50786d17c49597, type: 2}
-    - {fileID: 11400000, guid: a126f053602eec248a244adecf8aede8, type: 2}
-    - {fileID: 11400000, guid: 6e20dbb5f70ea504ba70237de0490289, type: 2}
+    ReferencedUnityObjects: []
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes:
+    - Name: startCallBack
+      Entry: 6
+      Data: 
+    - Name: endCallBack
+      Entry: 6
+      Data: 
     - Name: animationDict
       Entry: 7
       Data: 0|System.Collections.Generic.Dictionary`2[[InGame.Unit.UnitAnimationType,
-        Assembly-CSharp],[InGame.Unit.UnitAnimationClip, Assembly-CSharp]], mscorlib
+        Assembly-CSharp],[InGame.SpriteAnimationClip, Assembly-CSharp]], mscorlib
     - Name: comparer
       Entry: 7
       Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[InGame.Unit.UnitAnimationType,
@@ -26602,8 +26593,8 @@ MonoBehaviour:
       Entry: 3
       Data: 0
     - Name: $v
-      Entry: 10
-      Data: 0
+      Entry: 6
+      Data: 
     - Name: 
       Entry: 8
       Data: 
@@ -26614,8 +26605,8 @@ MonoBehaviour:
       Entry: 3
       Data: 1
     - Name: $v
-      Entry: 10
-      Data: 1
+      Entry: 6
+      Data: 
     - Name: 
       Entry: 8
       Data: 
@@ -26650,8 +26641,8 @@ MonoBehaviour:
       Entry: 3
       Data: 4
     - Name: $v
-      Entry: 10
-      Data: 2
+      Entry: 6
+      Data: 
     - Name: 
       Entry: 8
       Data: 
@@ -26660,12 +26651,6 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 8
-      Data: 
-    - Name: startCallBack
-      Entry: 6
-      Data: 
-    - Name: endCallBack
-      Entry: 6
       Data: 
   spriteRenderer: {fileID: 1198585697}
 --- !u!114 &1380883233
@@ -30091,19 +30076,22 @@ MonoBehaviour:
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects:
-    - {fileID: 11400000, guid: 1e1dbbbc8bb9d2740a50786d17c49597, type: 2}
-    - {fileID: 11400000, guid: a126f053602eec248a244adecf8aede8, type: 2}
-    - {fileID: 11400000, guid: 6e20dbb5f70ea504ba70237de0490289, type: 2}
+    ReferencedUnityObjects: []
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes:
+    - Name: startCallBack
+      Entry: 6
+      Data: 
+    - Name: endCallBack
+      Entry: 6
+      Data: 
     - Name: animationDict
       Entry: 7
       Data: 0|System.Collections.Generic.Dictionary`2[[InGame.Unit.UnitAnimationType,
-        Assembly-CSharp],[InGame.Unit.UnitAnimationClip, Assembly-CSharp]], mscorlib
+        Assembly-CSharp],[InGame.SpriteAnimationClip, Assembly-CSharp]], mscorlib
     - Name: comparer
       Entry: 7
       Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[InGame.Unit.UnitAnimationType,
@@ -30127,8 +30115,8 @@ MonoBehaviour:
       Entry: 3
       Data: 0
     - Name: $v
-      Entry: 10
-      Data: 0
+      Entry: 6
+      Data: 
     - Name: 
       Entry: 8
       Data: 
@@ -30139,8 +30127,8 @@ MonoBehaviour:
       Entry: 3
       Data: 1
     - Name: $v
-      Entry: 10
-      Data: 1
+      Entry: 6
+      Data: 
     - Name: 
       Entry: 8
       Data: 
@@ -30175,8 +30163,8 @@ MonoBehaviour:
       Entry: 3
       Data: 4
     - Name: $v
-      Entry: 10
-      Data: 2
+      Entry: 6
+      Data: 
     - Name: 
       Entry: 8
       Data: 
@@ -30185,12 +30173,6 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 8
-      Data: 
-    - Name: startCallBack
-      Entry: 6
-      Data: 
-    - Name: endCallBack
-      Entry: 6
       Data: 
   spriteRenderer: {fileID: 1121120671}
 --- !u!114 &1628504603
