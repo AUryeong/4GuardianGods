@@ -12,6 +12,8 @@ namespace InGame.Unit
         [SerializeField] private Collider2D unitCollider;
         [SerializeField] private Rigidbody2D rigid;
 
+        public bool alice;
+
         [Header("Value")]
         public Vector2 velocity;
         public float speed;
@@ -48,6 +50,8 @@ namespace InGame.Unit
                 if (ray.collider != null)
                 {
                     velocity = Vector2.zero;
+                    if (alice)
+                        gameObject.SetActive(false);
                     return;
                 }
                 transform.Translate(moveDir, Space.World);

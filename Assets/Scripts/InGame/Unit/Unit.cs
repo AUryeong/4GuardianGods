@@ -6,10 +6,11 @@ using UnityEngine;
 
 namespace InGame.Unit
 {
-    public class Unit : MonoBehaviour
+    public class Unit : PoolableUnit<Unit>
     {
         [SerializeField] protected UnitMover unitMover;
         [SerializeField] protected UnitAnimator unitAnimator;
+        [SerializeField] protected UnitHit unitHit;
 
         protected void UpdateAnimState()
         {

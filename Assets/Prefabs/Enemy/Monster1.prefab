@@ -333,6 +333,7 @@ GameObject:
   - component: {fileID: 7292320225711946227}
   - component: {fileID: 7292320225711946226}
   - component: {fileID: 7292320225711945998}
+  - component: {fileID: 5371247173333295395}
   - component: {fileID: 7292320225711946224}
   - component: {fileID: 7292320225711945997}
   m_Layer: 11
@@ -421,6 +422,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitMover: {fileID: 7292320225711946224}
   unitAnimator: {fileID: 7292320225711945997}
+  unitHit: {fileID: 5371247173333295395}
+  range: 6
+  enemyProjectile: {fileID: 8548944878754022564, guid: 1f256e3ee4a9d8c42bdc95fb62008122, type: 3}
+--- !u!114 &5371247173333295395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7292320225711946230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a130b294b4f9f8c4c93bdfc615d65ed0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poolUnit: {fileID: 7292320225711945998}
+  MaxHp: 100
+  dieEffect: {fileID: 6616279806690406208, guid: febb9aa967242b94889b2036ea5b42ad, type: 3}
 --- !u!114 &7292320225711946224
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -465,7 +484,7 @@ MonoBehaviour:
     - Name: animationDict
       Entry: 7
       Data: 0|System.Collections.Generic.Dictionary`2[[InGame.Unit.UnitAnimationType,
-        Assembly-CSharp],[InGame.Unit.UnitAnimationClip, Assembly-CSharp]], mscorlib
+        Assembly-CSharp],[InGame.SpriteAnimationClip, Assembly-CSharp]], mscorlib
     - Name: comparer
       Entry: 7
       Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[InGame.Unit.UnitAnimationType,
@@ -547,11 +566,5 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 8
-      Data: 
-    - Name: startCallBack
-      Entry: 6
-      Data: 
-    - Name: endCallBack
-      Entry: 6
       Data: 
   spriteRenderer: {fileID: 7292320225240639219}

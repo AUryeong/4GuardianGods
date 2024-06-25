@@ -28,6 +28,17 @@ namespace InGame.Unit
             { UnitAnimationType.Jump, null },
             { UnitAnimationType.Fall, null }
         };
+        public SpriteAnimationClip GetSpriteAnimationClip(UnitAnimationType type)
+        {
+            return animationDict[type];
+        }
+
+        public void SetAnimationCallBack(UnitAnimationType type, int frame, Action action)
+        {
+            if (!animationDict.TryGetValue(type, out var animationClip))
+                return;
+            SetAnimationCallBack(animationClip, frame, action);
+        }
 
         public virtual void SetAnimationState(UnitAnimationType type, bool isResetFrame = true)
         {

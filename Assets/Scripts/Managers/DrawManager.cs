@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using DG.Tweening;
+using InGame.Unit;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -11,6 +12,7 @@ namespace InGame
         [SerializeField] private LineRenderer lineRenderer;
         [SerializeField] private EdgeCollider2D edgeCollider;
         [SerializeField] private SpriteRenderer lineSpriteRenderer;
+        [SerializeField] private Projectile lineProjectile;
 
         [SerializeField] private SpriteRenderer spriteRenderer;
         [SerializeField] private Rigidbody2D rigid;
@@ -31,7 +33,8 @@ namespace InGame
 
                 float power = Mathf.Max(0, (MAX_DISTANCE - distance) / Mathf.Sqrt(edgeCollider.bounds.size.x * edgeCollider.bounds.size.y));
 
-                Debug.Log(Mathf.Max(0, power));
+                lineProjectile.enabled = true;
+                lineProjectile.damage = Mathf.Max(0, power);
 
                 lineSpriteRenderer.gameObject.SetActive(true);
                 lineSpriteRenderer.transform.localPosition = edgeCollider.bounds.center;
@@ -62,6 +65,9 @@ namespace InGame
                 
                 lineRenderer.transform.position = Vector3.zero;
                 lineRenderer.transform.rotation = quaternion.identity;
+
+                lineProjectile.enabled = false;
+                lineProjectile.damage = 0;
 
                 Time.timeScale = 0.25f;
                 spriteRenderer.DOFade(0.4f, 0.5f).SetUpdate(true);
