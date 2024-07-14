@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c948795284d49e6854533cc6ba40e0f, type: 3}
+  m_Name: Brush_Walk
+  m_EditorClassIdentifier: 
+  animations:
+  - {fileID: 192515392, guid: fcaf687541dd1a3418975cfde7e97b9b, type: 3}
+  - {fileID: 599591440, guid: fcaf687541dd1a3418975cfde7e97b9b, type: 3}
+  - {fileID: 939552788, guid: fcaf687541dd1a3418975cfde7e97b9b, type: 3}
+  - {fileID: -1226197033, guid: fcaf687541dd1a3418975cfde7e97b9b, type: 3}
+  - {fileID: 1255644674, guid: fcaf687541dd1a3418975cfde7e97b9b, type: 3}
+  - {fileID: -1362837187, guid: fcaf687541dd1a3418975cfde7e97b9b, type: 3}
+  isLoop: 1
+  oneSecondPerFrame: 12
