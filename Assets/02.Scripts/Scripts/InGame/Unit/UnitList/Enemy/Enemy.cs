@@ -12,6 +12,7 @@ namespace InGame.Unit
         protected virtual void Start()
         {
             unitAnimator.SetAnimationState(UnitAnimationType.Idle);
+            unitAnimator.SetAnimationCallBack(UnitAnimationType.Special, 0, SetFlip);
             unitHit.SetDieAction(Die);
         }
 
@@ -23,7 +24,7 @@ namespace InGame.Unit
         {
             DrawManager.Instance.SetMaxBrush();
         }
-        
+
         public virtual void OnFixedUpdate()
         {
             float deltaTime = Time.deltaTime;
@@ -38,9 +39,13 @@ namespace InGame.Unit
             }
             else
             {
-                UpdateAnimState();
                 unitAnimator.UpdateAnimation(deltaTime);
             }
+        }
+
+        private void SetFlip()
+        {
+            unitAnimator.IsFlip = GameManager.Instance.playerUnit.transform.position.x - transform.position.x > 0;
         }
 
         private void CheckAttack()

@@ -8,11 +8,12 @@ namespace InGame
         [System.Serializable]
         private class BackgroundObject
         {
-            public SpriteRenderer spriteRenderer;
+            public GameObject spriteRenderer;
             public float speed;
         }
 
         [SerializeField] private List<BackgroundObject> backgroundObjects;
+        [SerializeField] private List<BackgroundObject> backgroundMountains;
 
         private const float BACKGROUND_DISTANCE = 20;
         private const float BACKGROUND_SIZE = 3;
@@ -31,9 +32,13 @@ namespace InGame
             var bounds = playerInMap.mapCollider.bounds;
             var size = (bounds.center - GameManager.Instance.playerUnit.transform.position) * BACKGROUND_SIZE;
 
-            transform.position = Vector3.Lerp(transform.position,
-                CameraManager.Instance.MainCamera.transform.position + 
-                 new Vector3(size.x / bounds.size.x, size.y / bounds.size.y, 10), Time.deltaTime * BACKGROUND_FOLLOW_SPEED);
+            transform.position = CameraManager.Instance.MainCamera.transform.position;
+            foreach(var obj in backgroundMountains)
+            {
+                obj.spriteRenderer.transform.position = Vector3.Lerp(obj.spriteRenderer.transform.position,
+                    CameraManager.Instance.MainCamera.transform.position +
+                     new Vector3(size.x / bounds.size.x / obj.speed, size.y / bounds.size.y / obj.speed, 10), Time.deltaTime * BACKGROUND_FOLLOW_SPEED * obj.speed);
+            }
             foreach (var obj in backgroundObjects)
             {
                 obj.spriteRenderer.transform.Translate(obj.speed * Time.deltaTime * Vector3.left);

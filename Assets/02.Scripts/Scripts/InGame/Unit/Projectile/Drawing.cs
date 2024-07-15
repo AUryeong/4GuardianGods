@@ -126,7 +126,7 @@ namespace InGame.Unit
                     duration += deltaTime;
                     if (rigid.velocity == Vector2.zero)
                     {
-                        SetPosition(lines.GetRange(0, (int)Mathf.Lerp(0, lines.Count, (DRAW_DURATION - duration) / PROJECTILE_DURATION * 2)));
+                        SetPosition(lines.GetRange(0, (int)Mathf.Lerp(0, lines.Count, (PROJECTILE_DURATION - duration) / PROJECTILE_DURATION * 2)));
                         if (duration >= PROJECTILE_DURATION)
                         {
                             gameObject.SetActive(false);

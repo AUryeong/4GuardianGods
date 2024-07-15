@@ -41,19 +41,18 @@ namespace InGame.Unit
 
         public override void PlayAnimationClip(UnitAnimationType type, bool isResetFrame = true)
         {
+            SpriteAnimationClip animClip;
             if (DrawManager.Instance.IsDrawing)
             {
-                if (brushAnimationDict.TryGetValue(type, out var animClip))
+                if (brushAnimationDict.TryGetValue(type, out animClip))
                 {
                     SetAnimationClip(ref playClip, animClip, isResetFrame);
+                    return;
                 }
             }
-            else
+            if (animationDict.TryGetValue(type, out animClip))
             {
-                if (animationDict.TryGetValue(type, out var animClip))
-                {
-                    SetAnimationClip(ref playClip, animClip, isResetFrame);
-                }
+                SetAnimationClip(ref playClip, animClip, isResetFrame);
             }
         }
     }

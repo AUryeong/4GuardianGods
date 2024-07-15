@@ -28,6 +28,7 @@ public struct SoundSettings
 
 public class SoundManager : SingletonBehavior<SoundManager>
 {
+    protected override bool IsDontDestroying => true;
     private readonly Dictionary<SoundType, SoundSettings> soundSettingDict = new();
     private readonly List<AudioSource> bgmAudioSources = new(2);
     private int bgmPlayIndex;
