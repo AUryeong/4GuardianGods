@@ -423,7 +423,8 @@ MonoBehaviour:
   unitMover: {fileID: 7292320225711946224}
   unitAnimator: {fileID: 7292320225711945997}
   unitHit: {fileID: 5371247173333295395}
-  range: 30
+  attackRange: 60
+  attackCooltime: 0
 --- !u!114 &5371247173333295395
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -60,9 +60,18 @@ namespace InGame.Unit
 
         private void CheckInput()
         {
+            CheckDown();
             CheckJump();
             CheckDash();
             UpdateVelocity();
+        }
+
+        private void CheckDown()
+        {
+            if (Input.GetKeyDown(KeyCode.S) && IsWallStanding)
+            {
+                IsWallStanding = false;
+            }
         }
 
         private void CheckDash()
@@ -200,7 +209,16 @@ namespace InGame.Unit
                 return;
 
             float inputX = Input.GetAxisRaw("Horizontal");
-            unitMover.velocity.x += inputX;
+            if (inputX != 0)
+            {
+                unitMover.velocity.x += inputX;
+                if (jumpCount == 0 && UnitMover.IsGround && unitAnimator.IsPlayAnimation(UnitAnimationType.Walk))
+                {
+                    SoundManager.Instance.PlaySoundAmbient("Step_Grass", 0.1f, 1.2f);
+                    return;
+                }
+            }
+            SoundManager.Instance.StopSoundAmbient("Step_Grass");
         }
     }
 }

@@ -58,6 +58,12 @@ namespace InGame
 
         private void CheckDraw()
         {
+            if (!GameManager.Instance.playerUnit.IsControllable)
+            {
+                UpdateUI();
+                return;
+            }
+
             if (Input.GetMouseButtonUp(0))
             {
                 Time.timeScale = 1f;
@@ -71,27 +77,7 @@ namespace InGame
 
             if (!IsDrawing)
             {
-                if (leftBrushAddDuration > 0)
-                {
-                    leftBrushAddDuration -= Time.deltaTime;
-                    return;
-                }
-
-                if (LeftBrush < MAX_DISTANCE)
-                {
-                    LeftBrush = Mathf.Clamp(LeftBrush + Time.deltaTime * MAX_DISTANCE, 0, MAX_DISTANCE);
-                }
-
-                if (leftBrushShowDuration > 0)
-                {
-                    leftBrushShowDuration -= Time.deltaTime;
-                    paintUI.material.SetFloat("_Fade", Mathf.Lerp(0, 1, leftBrushShowDuration * 2 / UI_REMOVE_DURATION));
-                    if (leftBrushShowDuration <= 0)
-                    {
-                        paintUI.gameObject.SetActive(false);
-                    }
-                }
-
+                UpdateUI();
                 return;
             }
 
@@ -121,6 +107,30 @@ namespace InGame
                 vectorList.Add(input);
 
                 drawing.SetPosition(vectorList);
+            }
+        }
+
+        private void UpdateUI()
+        {
+            if (leftBrushAddDuration > 0)
+            {
+                leftBrushAddDuration -= Time.deltaTime;
+                return;
+            }
+
+            if (LeftBrush < MAX_DISTANCE)
+            {
+                LeftBrush = Mathf.Clamp(LeftBrush + Time.deltaTime * MAX_DISTANCE, 0, MAX_DISTANCE);
+            }
+
+            if (leftBrushShowDuration > 0)
+            {
+                leftBrushShowDuration -= Time.deltaTime;
+                paintUI.material.SetFloat("_Fade", Mathf.Lerp(0, 1, leftBrushShowDuration * 2 / UI_REMOVE_DURATION));
+                if (leftBrushShowDuration <= 0)
+                {
+                    paintUI.gameObject.SetActive(false);
+                }
             }
         }
     }

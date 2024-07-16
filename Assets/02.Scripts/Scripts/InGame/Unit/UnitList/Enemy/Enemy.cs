@@ -5,14 +5,26 @@ using UnityEngine;
 
 namespace InGame.Unit
 {
+    public enum Direction
+    {
+        Left,
+        Right,
+    }
     public class Enemy : Unit
     {
-        public float range;
+        protected Direction direction;
+        private float directionDuration;
+        private const float DIRECTION_COOLTIME = 0.2f;
+
+        public float attackRange;
+        [SerializeField] private float attackCooltime;
+        private float attackDuration;
+
+        public virtual bool IsAttacking => unitAnimator.IsPlayAnimation(UnitAnimationType.Special);
 
         protected virtual void Start()
         {
             unitAnimator.SetAnimationState(UnitAnimationType.Idle);
-            unitAnimator.SetAnimationCallBack(UnitAnimationType.Special, 0, SetFlip);
             unitHit.SetDieAction(Die);
         }
 
@@ -25,13 +37,14 @@ namespace InGame.Unit
             DrawManager.Instance.SetMaxBrush();
         }
 
+
         public virtual void OnFixedUpdate()
         {
-            float deltaTime = Time.deltaTime;
-            CheckAttack();
-
-            if (!unitAnimator.IsPlayAnimation(UnitAnimationType.Special))
+            float deltaTime = Time.fixedDeltaTime;
+            if (!IsAttacking)
             {
+                UpdateAttack(deltaTime);
+                UpdateDirection(deltaTime);
                 UpdateVelocity();
                 UpdateAnimState();
                 unitAnimator.UpdateAnimation(deltaTime);
@@ -48,17 +61,41 @@ namespace InGame.Unit
             unitAnimator.IsFlip = GameManager.Instance.playerUnit.transform.position.x - transform.position.x > 0;
         }
 
-        private void CheckAttack()
+        private void UpdateAttack(float deltaTime)
         {
+            if (IsAttacking)
+                return;
+
+            if (attackDuration > 0)
+            {
+                attackDuration -= deltaTime;
+                return;
+            }
+
             float distance = Vector3.Distance(GameManager.Instance.playerUnit.transform.position, transform.position);
-            if (distance < range)
+            if (distance < attackRange)
+            {
+                SetFlip();
+                attackDuration = attackCooltime;
                 unitAnimator.PlayAnimationClip(UnitAnimationType.Special);
+            }
         }
+
+        private void UpdateDirection(float deltaTime)
+        {
+            directionDuration += deltaTime;
+            if (directionDuration > DIRECTION_COOLTIME)
+            {
+                directionDuration -= DIRECTION_COOLTIME;
+                float x = GameManager.Instance.playerUnit.transform.position.x - transform.position.x;
+                direction = x > 0 ? Direction.Left : Direction.Right;
+            }
+        }
+
 
         private void UpdateVelocity()
         {
-            float x = GameManager.Instance.playerUnit.transform.position.x - transform.position.x;
-            unitMover.velocity.x += Mathf.Sign(x);
+            unitMover.velocity.x += (direction == Direction.Left) ? 1 : -1;
         }
     }
 }

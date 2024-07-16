@@ -6,8 +6,10 @@ using UnityEngine;
 
 public enum SoundType
 {
+    None = -1,
     Bgm,
     Sfx,
+    Ambient,
     Max
 }
 
@@ -29,24 +31,30 @@ public struct SoundSettings
 public class SoundManager : SingletonBehavior<SoundManager>
 {
     protected override bool IsDontDestroying => true;
-    private readonly Dictionary<SoundType, SoundSettings> soundSettingDict = new();
+    private readonly Dictionary<SoundType, SoundSettings> soundSettingDict = new((int)SoundType.Max);
     private readonly List<AudioSource> bgmAudioSources = new(2);
     private int bgmPlayIndex;
     private ListableObjectPool<AudioSource> sfxAudioSources;
+    private Dictionary<string, AudioSource> ambientAudioSourceDict;
 
     protected override void OnCreated()
     {
         base.OnCreated();
 
         //TODO 설정 적용
-        soundSettingDict.Add(SoundType.Bgm, new SoundSettings(false, 1));
-        soundSettingDict.Add(SoundType.Sfx, new SoundSettings(false, 1));
+        for (SoundType soundType = SoundType.None+1; soundType < SoundType.Max; soundType++)
+        {
+            soundSettingDict.Add(soundType, new SoundSettings(false, 1));
+        }
 
         //FADE IN OUT을 위한 2개 생성
         for (int i = 0; i < 2; i++)
         {
             bgmAudioSources.Add(CreateAudioSource(SoundType.Bgm.ToString(), true));
         }
+
+        //AMBIENT는 크고 껴고가 잦으며, 특정 키를 기반으로 키고 끄게
+        ambientAudioSourceDict = new Dictionary<string, AudioSource>();
 
         //SFX는 Pitch 조절이 가능해야하니 풀링 가능하게
         sfxAudioSources = new ListableObjectPool<AudioSource>(CreateAudioSource(SoundType.Sfx.ToString()));
@@ -82,7 +90,7 @@ public class SoundManager : SingletonBehavior<SoundManager>
 
     public void StopAllSounds()
     {
-        for (var type = SoundType.Bgm; type < SoundType.Max; type++)
+        for (var type = SoundType.None + 1; type < SoundType.Max; type++)
             StopSounds(type);
     }
 
@@ -96,6 +104,10 @@ public class SoundManager : SingletonBehavior<SoundManager>
                 break;
             case SoundType.Sfx:
                 foreach (var audioSource in sfxAudioSources)
+                    audioSource.Stop();
+                break;
+            case SoundType.Ambient:
+                foreach (var audioSource in ambientAudioSourceDict.Values)
                     audioSource.Stop();
                 break;
         }
@@ -115,10 +127,49 @@ public class SoundManager : SingletonBehavior<SoundManager>
                 foreach (var audioSource in sfxAudioSources)
                     audioSource.volume = setting.Volume;
                 break;
+            case SoundType.Ambient:
+                foreach (var audioSource in ambientAudioSourceDict.Values)
+                    audioSource.volume = setting.Volume;
+                break;
         }
     }
 
-    public void PlaySoundSfx(string soundName, float pitch = 1)
+    public void StopSoundAmbient(string soundKey)
+    {
+        if (ambientAudioSourceDict.TryGetValue(soundKey, out var audioSource))
+        {
+            audioSource.Stop();
+        }
+    }
+
+    public void PlaySoundAmbient(string soundKey, float volume = 1, float pitch = 1)
+    {
+        if (string.IsNullOrEmpty(soundKey))
+        {
+            StopSounds(SoundType.Ambient);
+            return;
+        }
+
+        var audioInfo = soundSettingDict[SoundType.Ambient];
+        if (ambientAudioSourceDict.TryGetValue(soundKey, out var audioSource))
+        {
+            if (!audioSource.isPlaying)
+                audioSource.Play();
+        }
+        else
+        {
+            audioSource = CreateAudioSource(soundKey, true);
+
+            var audioClip = DataManager.Instance.GetAudioClip(soundKey);
+            audioSource.pitch = pitch;
+            audioSource.volume = audioInfo.Volume * volume;
+            audioSource.clip = audioClip;
+            audioSource.Play();
+            ambientAudioSourceDict.Add(soundKey, audioSource);
+        }
+    }
+
+    public void PlaySoundSfx(string soundName, float volume = 1, float pitch = 1)
     {
         if (string.IsNullOrEmpty(soundName))
         {
@@ -131,10 +182,10 @@ public class SoundManager : SingletonBehavior<SoundManager>
 
         var audioSource = sfxAudioSources.PopPool();
         audioSource.pitch = pitch;
-        audioSource.PlayOneShot(audioClip, audioInfo.Volume);
+        audioSource.PlayOneShot(audioClip, audioInfo.Volume* volume);
     }
 
-    public void PlaySoundBgm(string soundName, bool isFade = true)
+    public void PlaySoundBgm(string soundName, float volume = 1, bool isFade = true)
     {
         if (string.IsNullOrEmpty(soundName))
         {
@@ -143,6 +194,7 @@ public class SoundManager : SingletonBehavior<SoundManager>
         }
 
         var audioClip = DataManager.Instance.GetAudioClip(soundName);
+        Debug.Log(soundSettingDict);
         var audioInfo = soundSettingDict[SoundType.Bgm];
 
         var audioSource = bgmAudioSources[bgmPlayIndex];
@@ -158,12 +210,12 @@ public class SoundManager : SingletonBehavior<SoundManager>
         if (isFade)
         {
             BgmSoundFade(audioSource, 0).Forget();
-            BgmSoundFade(fadeAudioSource, audioInfo.Volume).Forget();
+            BgmSoundFade(fadeAudioSource, audioInfo.Volume* volume).Forget();
         }
         else
         {
             audioSource.Stop();
-            fadeAudioSource.volume = audioInfo.Volume;
+            fadeAudioSource.volume = audioInfo.Volume* volume;
         }
     }
 

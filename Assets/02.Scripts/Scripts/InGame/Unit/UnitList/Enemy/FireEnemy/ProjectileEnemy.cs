@@ -4,12 +4,19 @@ using UnityEngine;
 
 namespace InGame.Unit
 {
-    public class DefaultEnemy : Enemy
+    public class ProjectileEnemy : Enemy
     {
+        [SerializeField] private SpriteRenderer target;
+
         protected override void Start()
         {
             base.Start();
             unitAnimator.SetAnimationCallBack(UnitAnimationType.Special, 4, Attack);
+        }
+
+        public override void OnFixedUpdate()
+        {
+            base.OnFixedUpdate();
         }
 
         protected override void Attack()

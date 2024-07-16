@@ -15,7 +15,11 @@ namespace InGame.Unit
         Fall,
         Special,
         Special2,
-        Special3
+        Special3,
+        Special4,
+        Special5,
+        Special6,
+        Special7,
     }
 
     public class UnitAnimator : SpriteAnimator

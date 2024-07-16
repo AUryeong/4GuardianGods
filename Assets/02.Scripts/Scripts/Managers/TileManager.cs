@@ -92,14 +92,14 @@ public class TileManager : SingletonBehavior<TileManager>
                             break;
                     }
                 }
-                if (tileDatas.Count <= 0 && backgroundDatas.Count <= 0) continue;
+                if (tileDatas.Count <= 3 && backgroundDatas.Count <= 0) continue;
 
                 var map = Instantiate(tileMap, grid.transform);
                 map.ClearAllTiles();
 
                 var mapComponent = map.GetComponent<Map>();
 
-                if (tileDatas.Count > 0)
+                if (tileDatas.Count > 3)
                 {
                     foreach (var tileData in tileDatas)
                         map.SetTile(tileData.pos, tileData.tileBase);
