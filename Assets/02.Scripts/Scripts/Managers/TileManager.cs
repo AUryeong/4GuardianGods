@@ -6,6 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using InGame;
+using Unity.VisualScripting;
 using UnityEngine.Tilemaps;
 
 [System.Serializable]
@@ -56,21 +57,44 @@ public class TileManager : SingletonBehavior<TileManager>
                         vectors.Add(new Vector2Int(x, y));
 
                         var tileColor = defaultTile.tileTexture.GetPixel(x, y);
-                        if (defaultTile.tileDict.TryGetValue(tileColor, out TileBase tileBase))
-                            tileDatas.Add(new TileData<TileBase>(new Vector3Int(x, y), tileBase));
+                        {
+                            foreach (var tile in defaultTile.tileDict.Keys)
+                            {
+                                if (tile.ToHexString() == tileColor.ToHexString())
+                                {
+                                    tileDatas.Add(new TileData<TileBase>(new Vector3Int(x, y), defaultTile.tileDict[tile]));
+                                }
+                            }
+                        }
 
-                        if (backgroundTile.tileDict.TryGetValue(backgroundTile.tileTexture.GetPixel(x,y), out GameObject backgroundData))
-                            backgroundDatas.Add(new TileData<GameObject>(new Vector3Int(x, y), backgroundData));
+                        tileColor = backgroundTile.tileTexture.GetPixel(x, y);
+                        {
+                            foreach (var tile in backgroundTile.tileDict.Keys)
+                            {
+                                if (tile.ToHexString() == tileColor.ToHexString())
+                                {
+                                    backgroundDatas.Add(new TileData<GameObject>(new Vector3Int(x, y), backgroundTile.tileDict[tile]));
+                                }
+                            }
+                        }
 
-                        if (enemyTile.tileDict.TryGetValue(enemyTile.tileTexture.GetPixel(x, y), out GameObject enemyData))
-                            enemyDatas.Add(new TileData<GameObject>(new Vector3Int(x, y), enemyData));
+                        tileColor = enemyTile.tileTexture.GetPixel(x, y);
+                        {
+                            foreach (var tile in enemyTile.tileDict.Keys)
+                            {
+                                if (tile.ToHexString() == tileColor.ToHexString())
+                                {
+                                    enemyDatas.Add(new TileData<GameObject>(new Vector3Int(x, y), enemyTile.tileDict[tile]));
+                                }
+                            }
+                        }
 
                         if (max < 0)
                         {
                             var splitColor = splitTexture.GetPixel(x, y);
                             if (splitColor == Color.green)
                             {
-                                for(int maxValue = x;maxValue < width; maxValue++)
+                                for (int maxValue = x; maxValue < width; maxValue++)
                                 {
                                     var color = splitTexture.GetPixel(maxValue, y);
                                     if (color != Color.green)
@@ -86,12 +110,14 @@ public class TileManager : SingletonBehavior<TileManager>
                             break;
                         }
                     }
+
                     {
                         var splitColor = splitTexture.GetPixel(j, y);
                         if (splitColor == Color.green)
                             break;
                     }
                 }
+
                 if (tileDatas.Count <= 3 && backgroundDatas.Count <= 0) continue;
 
                 var map = Instantiate(tileMap, grid.transform);
@@ -120,15 +146,16 @@ public class TileManager : SingletonBehavior<TileManager>
                     foreach (var enmyData in enemyDatas)
                     {
                         var obj = Instantiate(enmyData.tileBase, map.transform);
-                        obj.transform.position = enmyData.pos;
+                        obj.transform.position = enmyData.pos + new Vector3(0, 0.5f);
                         mapComponent.enemies.Add(obj.GetComponent<Enemy>());
                     }
                 }
+
                 continue;
             }
         }
-
     }
+
     public struct TileData<T>
     {
         public Vector3Int pos;

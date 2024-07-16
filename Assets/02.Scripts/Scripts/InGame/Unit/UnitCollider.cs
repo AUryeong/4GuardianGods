@@ -22,6 +22,7 @@ namespace InGame.Unit
         private ContactFilter2D contactFilter;
         
         private readonly List<Collider2D> colliders = new();
+        private readonly List<Collider2D> prevColliders = new();
         private Action<List<Collider2D>> colliderAction;
 
         private void Awake()
@@ -40,17 +41,32 @@ namespace InGame.Unit
             }
         }
 
+        private void OnEnable()
+        {
+            ClearColliders();
+        }
+
         public void SetColliderAction(Action<List<Collider2D>> action)
         {
             colliderAction = action;
         }
 
-        public void UpdateCollider(float deltaTime)
+        public void ClearColliders()
+        {
+            prevColliders.Clear();
+        }
+
+        public void UpdateCollider()
         {
             int colliderCount = Collider.OverlapCollider(contactFilter, colliders);
             if (colliderCount <= 0)
                 return;
             
+            colliders.RemoveAll(x => prevColliders.Contains(x));
+            if (colliders.Count <= 0)
+                return;
+            
+            prevColliders.AddRange(colliders);
             colliderAction?.Invoke(colliders);
         }
     }

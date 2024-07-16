@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 namespace InGame.Unit
@@ -38,6 +39,32 @@ namespace InGame.Unit
         private const int MAX_JUMP_COUNT = 2;
         private const float JUMP_POWER = 10;
         private const float DASH_SPEED = 5;
+
+        private void Awake()
+        {
+            unitHit.SetHitAction(HitAction);
+            unitHit.SetDieAction(DieAction);
+        }
+
+        private void HitAction()
+        {
+            UnitAnimator.Hit();
+
+            UIManager.Instance.Hit();
+        }
+
+        private void DieAction()
+        {
+            if (!IsControllable)
+                return;
+            IsControllable = false;
+            isRolling = false;
+            ResetJump();
+
+            UnitAnimator.Hit();
+
+            UIManager.Instance.Die();
+        }
 
         private void Update()
         {
@@ -109,6 +136,10 @@ namespace InGame.Unit
                 dashDuration = DASH_DURATION;
                 dashDirection = direction;
 
+                SoundManager.Instance.PlaySoundSfx("Dash", 1.5f, 3);
+                SoundManager.Instance.PlaySoundSfx("Dash2", 1f, 2);
+                SoundManager.Instance.PlaySoundSfx("Dash3", 0.5f, 1);
+
                 float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
                 unitAnimator.IsFlip = false;
                 unitAnimator.SpriteRenderer.transform.rotation = Quaternion.Euler(0, 0, angle);
@@ -140,12 +171,16 @@ namespace InGame.Unit
                 isRolling = true;
 
                 unitAnimator.SetAnimationState(UnitAnimationType.Special3);
+                
+                SoundManager.Instance.PlaySoundSfx("Hit_Brush", 1.5f, 1);
+                SoundManager.Instance.PlaySoundSfx("Hit_Brush2", 0.6f, 0.5f);
+                SoundManager.Instance.PlaySoundSfx("Hit_Brush4", 1, 0.8f);
 
                 var drawing = rayCastHit.collider.GetComponent<Drawing>();
                 drawing.Type = DrawingType.Projectile;
                 drawing.Throw(dashDirection);
 
-                unitMover.Rigid.velocity = -DASH_SPEED * drawing.Power * dashDirection;
+                unitMover.Rigid.velocity = -DASH_SPEED * Mathf.Sqrt(drawing.Power) * 2 * dashDirection;
                 unitMover.velocity = Vector2.zero;
 
                 ResetJump();
@@ -163,9 +198,11 @@ namespace InGame.Unit
             if (unitMover.Rigid.velocity.y <= 0)
             {
                 unitMover.CheckGround();
-                if (unitMover.IsGround && !IsDashing)
+                if (unitMover.IsGround && !IsDashing && (isRolling || jumpCount > 0 || isUsedDash))
                 {
                     ResetJump();
+                    SoundManager.Instance.PlaySoundSfx("Fall_Grass", 1.25f, 0.75f);
+                    SoundManager.Instance.PlaySoundSfx("Fall_Grass2", 1.25f, 1);
                     isRolling = false;
                 }
             }
@@ -177,6 +214,7 @@ namespace InGame.Unit
                     IsWallStanding = false;
                     isRolling = false;
                     jumpCount++;
+                    SoundManager.Instance.PlaySoundSfx("Jump", 1, 1.3f);
                     unitMover.Rigid.velocity = Vector2.up * JUMP_POWER;
                     unitAnimator.PlayAnimationClip(UnitAnimationType.Jump);
                 }
@@ -214,10 +252,11 @@ namespace InGame.Unit
                 unitMover.velocity.x += inputX;
                 if (jumpCount == 0 && UnitMover.IsGround && unitAnimator.IsPlayAnimation(UnitAnimationType.Walk))
                 {
-                    SoundManager.Instance.PlaySoundAmbient("Step_Grass", 0.1f, 1.2f);
+                    SoundManager.Instance.PlaySoundAmbient("Step_Grass", 1, 1.2f);
                     return;
                 }
             }
+
             SoundManager.Instance.StopSoundAmbient("Step_Grass");
         }
     }

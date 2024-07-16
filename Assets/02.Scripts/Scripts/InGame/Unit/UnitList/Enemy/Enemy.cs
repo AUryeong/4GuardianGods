@@ -17,8 +17,10 @@ namespace InGame.Unit
         private const float DIRECTION_COOLTIME = 0.2f;
 
         public float attackRange;
-        [SerializeField] private float attackCooltime;
-        private float attackDuration;
+        [SerializeField] protected float attackCooltime;
+        protected float attackDuration;
+
+        [SerializeField] private GameObject enemyDieEffect;
 
         public virtual bool IsAttacking => unitAnimator.IsPlayAnimation(UnitAnimationType.Special);
 
@@ -28,6 +30,14 @@ namespace InGame.Unit
             unitHit.SetDieAction(Die);
         }
 
+        public virtual void OnEnter()
+        {
+        }
+        
+        public virtual void OnExit()
+        {
+        }
+
         protected virtual void Attack()
         {
         }
@@ -35,6 +45,11 @@ namespace InGame.Unit
         protected virtual void Die()
         {
             DrawManager.Instance.SetMaxBrush();
+            gameObject.SetActive(false);
+            if (enemyDieEffect != null)
+            {
+                Instantiate(enemyDieEffect, transform.position, Quaternion.identity);
+            }
         }
 
 
@@ -47,6 +62,7 @@ namespace InGame.Unit
                 UpdateDirection(deltaTime);
                 UpdateVelocity();
                 UpdateAnimState();
+                SetFlip();
                 unitAnimator.UpdateAnimation(deltaTime);
                 unitMover.UpdateMove(deltaTime);
             }
@@ -56,12 +72,12 @@ namespace InGame.Unit
             }
         }
 
-        private void SetFlip()
+        protected void SetFlip()
         {
-            unitAnimator.IsFlip = GameManager.Instance.playerUnit.transform.position.x - transform.position.x > 0;
+            unitAnimator.IsFlip = direction == Direction.Left;
         }
 
-        private void UpdateAttack(float deltaTime)
+        protected void UpdateAttack(float deltaTime)
         {
             if (IsAttacking)
                 return;
@@ -75,13 +91,13 @@ namespace InGame.Unit
             float distance = Vector3.Distance(GameManager.Instance.playerUnit.transform.position, transform.position);
             if (distance < attackRange)
             {
+                attackDuration += attackCooltime;
                 SetFlip();
-                attackDuration = attackCooltime;
                 unitAnimator.PlayAnimationClip(UnitAnimationType.Special);
             }
         }
 
-        private void UpdateDirection(float deltaTime)
+        protected void UpdateDirection(float deltaTime)
         {
             directionDuration += deltaTime;
             if (directionDuration > DIRECTION_COOLTIME)
@@ -92,10 +108,9 @@ namespace InGame.Unit
             }
         }
 
-
-        private void UpdateVelocity()
+        protected virtual void UpdateVelocity()
         {
-            unitMover.velocity.x += (direction == Direction.Left) ? 1 : -1;
+            unitMover.velocity.x += direction == Direction.Left ? 1 : -1;
         }
     }
 }

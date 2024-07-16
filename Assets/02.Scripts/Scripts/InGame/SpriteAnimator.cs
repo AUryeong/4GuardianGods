@@ -32,6 +32,8 @@ namespace InGame
         protected SpriteAnimationClip playClip;
         protected SpriteAnimationClip playStateClip;
 
+        private bool isHit;
+
         protected float frame;
         public int Frame => (int)frame;
 
@@ -57,6 +59,9 @@ namespace InGame
                 animationCallBack.Add(clip, frameDict);
             }
 
+            if (frame < 0)
+                frame += clip.MaxFrame;
+            
             if (!frameDict.TryGetValue(frame, out var frameAction))
             {
                 frameAction = action;
@@ -82,6 +87,12 @@ namespace InGame
                 frame %= animClip.MaxFrame;
         }
 
+        public void Hit()
+        {
+            SpriteRenderer.material.SetInt("_Flash", 1);
+            isHit = true;
+        }
+
         public void UpdateAnimation(float deltaTime)
         {
             if (!PlayClip) return;
@@ -104,6 +115,11 @@ namespace InGame
             spriteRenderer.sprite = PlayClip.GetSprite(Frame);
             
             if (beforeFrame == Frame) return;
+            if (isHit)
+            {
+                isHit = false;
+                SpriteRenderer.material.SetInt("_Flash", 0);
+            }
             if (!animationCallBack.TryGetValue(PlayClip, out var actionDict)) return;
             if (actionDict.TryGetValue(Frame, out var action))
                 action?.Invoke();

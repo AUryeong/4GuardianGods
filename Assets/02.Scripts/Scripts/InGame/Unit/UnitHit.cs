@@ -9,10 +9,11 @@ namespace InGame.Unit
 {
     public class UnitHit : MonoBehaviour
     {
-        public float Hp { get; private set; }
+        public float Hp;
         [FormerlySerializedAs("MaxHp")]
         [SerializeField] private float maxHp;
 
+        private Action hitAction;
         private Action dieAction;
 
         private void Awake()
@@ -23,6 +24,7 @@ namespace InGame.Unit
         public void Hit(float damage)
         {
             Hp -= damage;
+            hitAction?.Invoke();
             if (Hp > 0) return;
 
             Die();
@@ -33,11 +35,18 @@ namespace InGame.Unit
             dieAction = action;
         }
 
-        private void Die()
+        public void SetHitAction(Action action)
         {
-            gameObject.SetActive(false);
-            dieAction?.Invoke();
+            hitAction = action;
+        }
+
+        public void Die()
+        {
+            Hp = 0;
+            if (dieAction == null)
+                gameObject.SetActive(false);
+            else
+                dieAction.Invoke();
         }
     }
-
 }

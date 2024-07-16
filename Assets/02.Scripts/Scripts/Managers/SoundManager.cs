@@ -154,7 +154,10 @@ public class SoundManager : SingletonBehavior<SoundManager>
         if (ambientAudioSourceDict.TryGetValue(soundKey, out var audioSource))
         {
             if (!audioSource.isPlaying)
+            {
+                audioSource.time = 0;
                 audioSource.Play();
+            }
         }
         else
         {
@@ -180,7 +183,7 @@ public class SoundManager : SingletonBehavior<SoundManager>
         var audioClip = DataManager.Instance.GetAudioClip(soundName);
         var audioInfo = soundSettingDict[SoundType.Sfx];
 
-        var audioSource = sfxAudioSources.PopPool();
+        var audioSource = CreateAudioSource(SoundType.Sfx.ToString());
         audioSource.pitch = pitch;
         audioSource.PlayOneShot(audioClip, audioInfo.Volume* volume);
     }
@@ -194,7 +197,6 @@ public class SoundManager : SingletonBehavior<SoundManager>
         }
 
         var audioClip = DataManager.Instance.GetAudioClip(soundName);
-        Debug.Log(soundSettingDict);
         var audioInfo = soundSettingDict[SoundType.Bgm];
 
         var audioSource = bgmAudioSources[bgmPlayIndex];

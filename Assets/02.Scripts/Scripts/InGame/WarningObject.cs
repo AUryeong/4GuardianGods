@@ -7,42 +7,67 @@ public class WarningObject : MonoBehaviour
 {
     private SpriteRenderer spriteRenderer;
 
-    public bool isFollowPlayer;
     [SerializeField] private Transform parent;
 
+    public bool isFollowPlayer;
+
+    [Header("Duration")]
     [SerializeField] private bool isUseDuration;
     [SerializeField] private float maxDuration;
     private float duration;
 
-    [SerializeField] private float fadeOutMaxDuration = 0.1f;
+    [SerializeField] private float fadeOutMaxDuration = 0.4f;
     private float fadeOutDuration;
+    private const int FADE_OUT_FLASH_TIME = 8;
 
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         parent ??= transform.parent;
+        gameObject.SetActive(false);
     }
 
     private void OnEnable()
     {
-        Enable();
+        SetActive(true);
     }
 
-    public void Enable()
+    public void SetActive(bool _isActive)
     {
-        duration = maxDuration;
-        fadeOutDuration = 0;
-        spriteRenderer.color = Color.red;
-    }
+        if (_isActive == gameObject.activeSelf)
+            return;
 
-    public void Disable()
-    {
-        fadeOutDuration = fadeOutMaxDuration;
-        spriteRenderer.color = Color.yellow;
+        if (_isActive)
+        {
+            gameObject.SetActive(true);
+
+            duration = maxDuration - fadeOutMaxDuration;
+            fadeOutDuration = 0;
+            spriteRenderer.color = Color.red.GetChangeAlpha(spriteRenderer.color.a);
+        }
+        else
+        {
+            fadeOutDuration = fadeOutMaxDuration;
+        }
     }
 
     private void Update()
     {
+        if (fadeOutDuration > 0)
+        {
+            fadeOutDuration -= Time.deltaTime;
+            spriteRenderer.color = fadeOutDuration / (fadeOutMaxDuration / FADE_OUT_FLASH_TIME) % 2 >= 1
+                ? Color.red.GetChangeAlpha(spriteRenderer.color.a)
+                : Color.white.GetChangeAlpha(spriteRenderer.color.a);
+
+            if (fadeOutDuration < 0)
+            {
+                gameObject.SetActive(false);
+            }
+
+            return;
+        }
+
         if (isFollowPlayer)
         {
             var direction = (GameManager.Instance.playerUnit.transform.position - parent.transform.position).normalized;
@@ -53,14 +78,7 @@ public class WarningObject : MonoBehaviour
             spriteRenderer.transform.rotation = Quaternion.Euler(0, 0, angle);
             spriteRenderer.size = new Vector2(rayCastHit.distance, spriteRenderer.size.y);
         }
-        if (fadeOutDuration > 0)
-        {
-            fadeOutDuration -= Time.deltaTime;
-            if (fadeOutDuration < 0)
-            {
-                gameObject.SetActive(false);
-            }
-        }
+
         if (isUseDuration)
         {
             if (duration > 0)
@@ -68,7 +86,7 @@ public class WarningObject : MonoBehaviour
                 duration -= Time.deltaTime;
                 if (duration <= 0)
                 {
-                    Disable();
+                    SetActive(false);
                 }
             }
         }

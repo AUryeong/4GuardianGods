@@ -63,10 +63,10 @@ public class TileBaker : MonoBehaviour
 
         var polygonPoints = new Vector2[4]
         {
-            new Vector2(Bounds.min.x, Bounds.min.y),
-            new Vector2(Bounds.min.x, Bounds.max.y),
-            new Vector2(Bounds.max.x, Bounds.max.y),
-            new Vector2(Bounds.max.x, Bounds.min.y)
+            new Vector2(Bounds.min.x, Bounds.min.y + 0.5f),
+            new Vector2(Bounds.min.x, Bounds.max.y - 0.5f),
+            new Vector2(Bounds.max.x, Bounds.max.y - 0.5f),
+            new Vector2(Bounds.max.x, Bounds.min.y + 0.5f)
         };
 
         var thisPolygon = gameObject.transform.GetOrAddComponent<PolygonCollider2D>();

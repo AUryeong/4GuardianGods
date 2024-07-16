@@ -32,8 +32,14 @@ namespace InGame
 
         public void OnFixedUpdate()
         {
+            if (!GameManager.Instance.playerUnit.IsControllable)
+                return;
+            
             foreach(var enemy in enemies)
             {
+                if (!enemy.gameObject.activeSelf)
+                    continue;
+                
                 enemy.OnFixedUpdate();
             }
         }
@@ -43,6 +49,10 @@ namespace InGame
             if (collision.CompareTag("Player"))
             {
                 CameraManager.Instance.Enqueue(this);
+                foreach (var enemy in enemies)
+                {
+                    enemy.OnEnter();
+                }
             }
         }
         private void OnTriggerExit2D(Collider2D collision)
@@ -50,6 +60,14 @@ namespace InGame
             if (collision.CompareTag("Player"))
             {
                 CameraManager.Instance.DeQueue(this);
+                foreach (var enemy in enemies)
+                {
+                    enemy.OnExit();
+                }
+            }
+            if (collision.CompareTag("Enemy"))
+            {
+                collision.GetComponent<Enemy>().UnitHit.Die();
             }
         }
     }

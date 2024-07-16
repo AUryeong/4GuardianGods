@@ -9,7 +9,8 @@ namespace InGame
 
         private void Start()
         {
-            SoundManager.Instance.PlaySoundBgm("Bgm", 0.3f);
+            SoundManager.Instance.PlaySoundBgm("Bgm", 0.2f);
+            SoundManager.Instance.PlaySoundAmbient("Birds", 1f);
         }
     }
 }

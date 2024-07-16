@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Feather 1
-  m_Shader: {fileID: 200, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: -6465566751694194690, guid: 57a29fcc18aeb904f91b53b853c9fb2b, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -25,7 +25,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: e4729cfd9035d6141a48a92c5dcc7c6e, type: 3}
+        m_Texture: {fileID: 2800000, guid: dfe6e0ac3e5f24740a17e14b65e08406, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskTex:
@@ -51,9 +51,10 @@ Material:
     m_Ints: []
     m_Floats:
     - _EnableExternalAlpha: 0
+    - _Flash: 0
     - _InvFade: 1
     m_Colors:
-    - _Color: {r: 2, g: 0.063921355, b: 0, a: 1}
+    - _Color: {r: 85.445015, g: 1.7894244, b: 0, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
     - _TintColor: {r: 1, g: 0.66800356, b: 0.37254906, a: 0.5}
