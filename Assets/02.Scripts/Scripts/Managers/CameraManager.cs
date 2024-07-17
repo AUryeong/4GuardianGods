@@ -2,6 +2,7 @@ using Cinemachine;
 using InGame;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class CameraManager : SingletonBehavior<CameraManager>
@@ -70,6 +71,11 @@ public class CameraManager : SingletonBehavior<CameraManager>
             insensity = insensity,
             power = power
         });
+    }
+
+    public void SetOrthographic(float size)
+    {
+        DOTween.To(() => virtualCamera.m_Lens.OrthographicSize, x => virtualCamera.m_Lens.OrthographicSize = x, size, 1f).SetEase(Ease.OutQuad).SetUpdate(true);
     }
 
     private void FixedUpdate()

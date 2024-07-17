@@ -6,29 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="15c4927e-747f-412b-a7e4-68b7533b1d2d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.4GuardianGods/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.4GuardianGods/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Resources/Animations/Enemy/FireEnemy/Dog/Attack.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Resources/Animations/Enemy/FireEnemy/Dog/Attack.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Resources/Animations/Projectile/AirSlash.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Resources/Animations/Projectile/AirSlash/AttackEffect.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Resources/Animations/Projectile/AirSlash/AttackEffect.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Resources/Animations/Projectile/AirSlash/Attack_Effect2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Resources/Animations/Projectile/AirSlash/Attack_Effect2.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Resources/Animations/Projectile/AirSlash/Attack_Effect2_Emission.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Resources/Animations/Projectile/AirSlash/Attack_Effect2_Emission.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Resources/Prefabs/Enemy/Monster2.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Resources/Prefabs/Enemy/Monster2.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Resources/Prefabs/Enemy/Monster5.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Resources/Prefabs/Enemy/Monster5.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Resources/Prefabs/Enemy/Monster6.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Resources/Prefabs/Enemy/Monster6.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/01.Resources/Scenes/InGame.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Resources/Scenes/InGame.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Resources/Sprites/Tile Sprite/Tile Pallete.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Resources/Sprites/Tile Sprite/Tile Pallete.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Resources/Sprites/Tile Sprite/Earth Tile/Earth_Tile.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Resources/Sprites/Tile Sprite/Earth Tile/Earth_Tile.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Resources/Sprites/Tile Sprite/Lava Tile/lava_Tile.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Resources/Sprites/Tile Sprite/Lava Tile/lava_Tile.png.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/InGame/Map/Map.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/InGame/Map/Map.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/InGame/Unit/UnitList/Enemy/Enemy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/InGame/Unit/UnitList/Enemy/Enemy.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/InGame/Unit/UnitList/Enemy/FireEnemy/ArmEnemy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/InGame/Unit/UnitList/Enemy/FireEnemy/ArmEnemy.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/InGame/Unit/UnitList/Enemy/FireEnemy/CowEnemy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/InGame/Unit/UnitList/Enemy/FireEnemy/CowEnemy.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/InGame/Unit/UnitList/Enemy/FireEnemy/DogEnemy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/InGame/Unit/UnitList/Enemy/FireEnemy/DogEnemy.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/InGame/Unit/UnitList/Enemy/FireEnemy/FlowerEnemy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/InGame/Unit/UnitList/Enemy/FireEnemy/FlowerEnemy.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/Managers/CameraManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/Managers/CameraManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Plugins/Febucci/Text Animator/Extra/Typewriter Sound - Package.unitypackage.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Plugins/Febucci/Text Animator/Integrations/PlayMaker - Integration.unitypackage.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Plugins/Febucci/Text Animator/Integrations/Visual Scripting - Integration.unitypackage.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/TileBaker.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/TileBaker.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -155,7 +138,7 @@
       <workItem from="1720947981727" duration="12801000" />
       <workItem from="1720980460908" duration="9999000" />
       <workItem from="1721134012049" duration="22860000" />
-      <workItem from="1721245426853" duration="3069000" />
+      <workItem from="1721245426853" duration="4386000" />
     </task>
     <servers />
   </component>

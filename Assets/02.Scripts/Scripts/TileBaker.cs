@@ -18,7 +18,7 @@ public class TileBaker : MonoBehaviour
     {
         foreach (var polygon in gameObject.GetComponentsInChildren<PolygonCollider2D>())
         {
-            if (polygon != null && polygon.gameObject != gameObject)
+            if (polygon != null && polygon.gameObject != gameObject && polygon.GetComponent<Map>() == null)
                 DestroyImmediate(polygon.gameObject);
         }
 

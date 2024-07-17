@@ -44,7 +44,7 @@ namespace InGame
             }
         }
 
-        public void OnEnter()
+        public virtual void OnEnter()
         {
             foreach (var enemy in enemies)
             {
@@ -52,7 +52,7 @@ namespace InGame
             }
         }
 
-        public void OnExit()
+        public virtual void OnExit()
         {
             foreach (var enemy in enemies)
             {
