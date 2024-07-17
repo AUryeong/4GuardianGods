@@ -12,8 +12,16 @@ namespace InGame.Unit
         
         protected override void UpdateVelocity()
         {
-            unitMover.velocity.x += direction == Direction.Left ? 1 : -1;
-            unitMover.velocity.y += Mathf.Sign(GameManager.Instance.playerUnit.transform.position.y - transform.position.y);
+            float distance = Vector3.Distance(GameManager.Instance.playerUnit.transform.position, transform.position);
+            var vector = new Vector2(direction == Direction.Left ? 1 : -1, Mathf.Sign(GameManager.Instance.playerUnit.transform.position.y - transform.position.y));
+            if (distance < attackRange)
+            {
+                unitMover.velocity -= vector;
+            }
+            else
+            {
+                unitMover.velocity += vector;
+            }
         }
     }
 }

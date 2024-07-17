@@ -91,10 +91,15 @@ namespace InGame.Unit
             float distance = Vector3.Distance(GameManager.Instance.playerUnit.transform.position, transform.position);
             if (distance < attackRange)
             {
-                attackDuration += attackCooltime;
-                SetFlip();
-                unitAnimator.PlayAnimationClip(UnitAnimationType.Special);
+                PlayAttack();
             }
+        }
+
+        protected virtual void PlayAttack()
+        {
+            attackDuration += attackCooltime;
+            SetFlip();
+            unitAnimator.PlayAnimationClip(UnitAnimationType.Special);
         }
 
         protected void UpdateDirection(float deltaTime)

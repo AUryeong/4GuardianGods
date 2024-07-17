@@ -13,9 +13,6 @@ MonoBehaviour:
   m_Name: Rush
   m_EditorClassIdentifier: 
   animations:
-  - {fileID: -512364823, guid: 883960785c378354d8bb79c50d8c1c1b, type: 3}
-  - {fileID: -2065808135, guid: 883960785c378354d8bb79c50d8c1c1b, type: 3}
-  - {fileID: -241995496, guid: 883960785c378354d8bb79c50d8c1c1b, type: 3}
-  - {fileID: 1725612566, guid: 883960785c378354d8bb79c50d8c1c1b, type: 3}
+  - {fileID: 21300000, guid: 883960785c378354d8bb79c50d8c1c1b, type: 3}
   isLoop: 1
   oneSecondPerFrame: 12

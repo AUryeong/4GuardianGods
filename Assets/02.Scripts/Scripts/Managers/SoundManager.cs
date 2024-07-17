@@ -31,6 +31,9 @@ public struct SoundSettings
 public class SoundManager : SingletonBehavior<SoundManager>
 {
     protected override bool IsDontDestroying => true;
+
+    [Range(0,1)] [SerializeField] private float volume = 1;
+
     private readonly Dictionary<SoundType, SoundSettings> soundSettingDict = new((int)SoundType.Max);
     private readonly List<AudioSource> bgmAudioSources = new(2);
     private int bgmPlayIndex;
@@ -44,7 +47,7 @@ public class SoundManager : SingletonBehavior<SoundManager>
         //TODO 설정 적용
         for (SoundType soundType = SoundType.None+1; soundType < SoundType.Max; soundType++)
         {
-            soundSettingDict.Add(soundType, new SoundSettings(false, 1));
+            soundSettingDict.Add(soundType, new SoundSettings(false, volume));
         }
 
         //FADE IN OUT을 위한 2개 생성

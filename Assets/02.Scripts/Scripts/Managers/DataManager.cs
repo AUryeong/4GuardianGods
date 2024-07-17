@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class DataManager : SingletonBehavior<DataManager>
 {
+    protected override bool IsDontDestroying => true;
+
     [Header("Sound")]
     private const string SOUND_PATH = "Sounds/";
     private readonly Dictionary<string, AudioClip> audioClips = new();

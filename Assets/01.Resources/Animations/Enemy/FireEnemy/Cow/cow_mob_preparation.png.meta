@@ -131,8 +131,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f908682c4c744694cb27a621055e7af1
-      internalID: -1571117381
+      spriteID: 92d329ec6d65a6940a30eba3185ad0df
+      internalID: 1903219098
       vertices: []
       indices: 
       edges: []
@@ -152,8 +152,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5aa57b480e980784383f917d0addf255
-      internalID: 842107414
+      spriteID: 5a819f5feda503641aa0218a084f531b
+      internalID: -2064445590
       vertices: []
       indices: 
       edges: []
@@ -173,8 +173,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a85f4ba0c1243894d8589af0bdcddb93
-      internalID: -1471467564
+      spriteID: ed0b54d5798af3e4b82b8e2064b2f1fe
+      internalID: 80489944
       vertices: []
       indices: 
       edges: []
@@ -194,8 +194,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 977002e516f30774597cb434d6114efa
-      internalID: -458183680
+      spriteID: 785cfe8c336de644d91a42f845389cee
+      internalID: 1971989765
       vertices: []
       indices: 
       edges: []
@@ -215,8 +215,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fb77b2fa94c9cc2478c84e140aecfa4c
-      internalID: 910531089
+      spriteID: 6e9a920a6f2904c46879e556dca30cd6
+      internalID: 1399083819
       vertices: []
       indices: 
       edges: []
@@ -236,8 +236,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b4f45623a74099c488440a34575a5c1b
-      internalID: -1971027312
+      spriteID: 449872260a5126246bdaa9f36af0cd78
+      internalID: -714592916
       vertices: []
       indices: 
       edges: []
@@ -257,8 +257,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: df9941502f554ef47be9e14b582ba0b4
-      internalID: -493712323
+      spriteID: 6d53a1ea640780b459a96b305702859c
+      internalID: -665379140
       vertices: []
       indices: 
       edges: []
@@ -278,8 +278,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b4f5000932d0495499028bbb451985bf
-      internalID: 44927349
+      spriteID: b4b183f8d59de10489c50b4f973cb750
+      internalID: 1020575411
       vertices: []
       indices: 
       edges: []
@@ -299,8 +299,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 50ae3d043a4a14f4692b8085fcec65dc
-      internalID: -722305101
+      spriteID: 23c45a55bf34ddc4089417a17870e5da
+      internalID: -1338402146
       vertices: []
       indices: 
       edges: []
@@ -320,8 +320,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 87ec6bc00e83a3240b88ddf278b1587b
-      internalID: -1211890289
+      spriteID: f0fe83979719e7f469b500cea404ee45
+      internalID: -263056802
       vertices: []
       indices: 
       edges: []
@@ -341,8 +341,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bdb820d83e4388a43b66da96f4f76c88
-      internalID: -2122359748
+      spriteID: e16a95201129b2b4b97bd471c8352a98
+      internalID: 925689980
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cow_mob_preparation_11
+      rect:
+        serializedVersion: 2
+        x: 1199
+        y: 0
+        width: 109
+        height: 71
+      alignment: 9
+      pivot: {x: 0.4311926, y: 0.5352113}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ede5a06f27dc18042beae8ca66e1910a
+      internalID: 995731832
       vertices: []
       indices: 
       edges: []
@@ -360,17 +381,18 @@ TextureImporter:
     - texture: {fileID: 2800000, guid: 0968f781c0202be4db9b5c59597fc617, type: 3}
       name: _Emission
     nameFileIdTable:
-      cow_mob_preparation_0: -1571117381
-      cow_mob_preparation_1: 842107414
-      cow_mob_preparation_10: -2122359748
-      cow_mob_preparation_2: -1471467564
-      cow_mob_preparation_3: -458183680
-      cow_mob_preparation_4: 910531089
-      cow_mob_preparation_5: -1971027312
-      cow_mob_preparation_6: -493712323
-      cow_mob_preparation_7: 44927349
-      cow_mob_preparation_8: -722305101
-      cow_mob_preparation_9: -1211890289
+      cow_mob_preparation_0: 1903219098
+      cow_mob_preparation_1: -2064445590
+      cow_mob_preparation_10: 925689980
+      cow_mob_preparation_11: 995731832
+      cow_mob_preparation_2: 80489944
+      cow_mob_preparation_3: 1971989765
+      cow_mob_preparation_4: 1399083819
+      cow_mob_preparation_5: -714592916
+      cow_mob_preparation_6: -665379140
+      cow_mob_preparation_7: 1020575411
+      cow_mob_preparation_8: -1338402146
+      cow_mob_preparation_9: -263056802
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

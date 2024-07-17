@@ -12,6 +12,7 @@ namespace InGame.Unit
 
         public float damage;
         public Vector2 velocity;
+        public bool isOnce;
 
         private float duration;
         public float maxDuration = 10;
@@ -19,8 +20,15 @@ namespace InGame.Unit
         private void Start()
         {
             unitMover.SetColliderAction(ColliderAction);
-            projectileAnimator.PlayAnimationClip(ProjectileAnimationType.Start);
             unitCollider.SetColliderAction(ColliderAction);
+            projectileAnimator.PlayAnimationClip(ProjectileAnimationType.Start);
+            if (isOnce)
+            {
+                projectileAnimator.SetAnimationCallBack(ProjectileAnimationType.Start, -1, () =>
+                {
+                    gameObject.SetActive(false);
+                });
+            }
         }
 
         private void ColliderAction(RaycastHit2D rayCast)
@@ -46,10 +54,19 @@ namespace InGame.Unit
 
         private void FixedUpdate()
         {
+            if (isOnce)
+            {
+                unitMover.velocity = velocity;
+                unitMover.UpdateMove(Time.fixedDeltaTime);
+                unitCollider.UpdateCollider();
+                projectileAnimator.UpdateAnimation(Time.fixedDeltaTime);
+                return;
+            }
             unitMover.velocity = velocity;
             unitMover.UpdateMove(Time.fixedDeltaTime);
             unitCollider.UpdateCollider();
             projectileAnimator.SetAnimationState(ProjectileAnimationType.Loop);
+            projectileAnimator.UpdateAnimation(Time.fixedDeltaTime);
             
             duration += Time.fixedDeltaTime;
             if (duration > maxDuration)

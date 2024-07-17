@@ -205,7 +205,7 @@ MonoBehaviour:
   unitMover: {fileID: 2161236878600787187}
   unitAnimator: {fileID: 2161236878600786958}
   unitHit: {fileID: 3622942761131936800}
-  attackRange: 45
+  attackRange: 90
   attackCooltime: 0.7
   enemyDieEffect: {fileID: 904844601862505720, guid: 64f0a8eccf779c942a1a2d20a97c7e81, type: 3}
   targetWarning: {fileID: 58189345855389898}
@@ -238,7 +238,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsPassPlatform: 0
   velocity: {x: 0, y: 0}
-  speed: 2
+  speed: 3
   layCount: 8
   rigid: {fileID: 2161236878600787184}
   unitCollider: {fileID: 2161236878600787185}
