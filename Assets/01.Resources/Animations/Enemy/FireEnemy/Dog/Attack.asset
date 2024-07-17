@@ -13,10 +13,13 @@ MonoBehaviour:
   m_Name: Attack
   m_EditorClassIdentifier: 
   animations:
-  - {fileID: -674084418, guid: e39564781a3790647986beab8676f947, type: 3}
-  - {fileID: -2127395226, guid: e39564781a3790647986beab8676f947, type: 3}
-  - {fileID: 333835207, guid: e39564781a3790647986beab8676f947, type: 3}
-  - {fileID: 932655996, guid: e39564781a3790647986beab8676f947, type: 3}
-  - {fileID: 265418190, guid: e39564781a3790647986beab8676f947, type: 3}
+  - {fileID: 449412900, guid: 2e708f340cd95b740bb930c65653aba3, type: 3}
+  - {fileID: -931390140, guid: 2e708f340cd95b740bb930c65653aba3, type: 3}
+  - {fileID: 174843966, guid: 2e708f340cd95b740bb930c65653aba3, type: 3}
+  - {fileID: -2083277361, guid: 2e708f340cd95b740bb930c65653aba3, type: 3}
+  - {fileID: 313458882, guid: 2e708f340cd95b740bb930c65653aba3, type: 3}
+  - {fileID: 65446969, guid: 2e708f340cd95b740bb930c65653aba3, type: 3}
+  - {fileID: -756358009, guid: 2e708f340cd95b740bb930c65653aba3, type: 3}
+  - {fileID: 634037593, guid: 2e708f340cd95b740bb930c65653aba3, type: 3}
   isLoop: 0
   oneSecondPerFrame: 12

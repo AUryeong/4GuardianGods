@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c948795284d49e6854533cc6ba40e0f, type: 3}
+  m_Name: ArmAttack
+  m_EditorClassIdentifier: 
+  animations:
+  - {fileID: -422604633, guid: 92d84aa43f8e3c04684e4531c54aea07, type: 3}
+  - {fileID: -1854594875, guid: 92d84aa43f8e3c04684e4531c54aea07, type: 3}
+  - {fileID: 1279855960, guid: 92d84aa43f8e3c04684e4531c54aea07, type: 3}
+  - {fileID: -143596927, guid: 92d84aa43f8e3c04684e4531c54aea07, type: 3}
+  - {fileID: 1116525391, guid: 92d84aa43f8e3c04684e4531c54aea07, type: 3}
+  - {fileID: -267458990, guid: 92d84aa43f8e3c04684e4531c54aea07, type: 3}
+  - {fileID: 1555445851, guid: 92d84aa43f8e3c04684e4531c54aea07, type: 3}
+  - {fileID: 2094077495, guid: 92d84aa43f8e3c04684e4531c54aea07, type: 3}
+  - {fileID: 1049071195, guid: 92d84aa43f8e3c04684e4531c54aea07, type: 3}
+  - {fileID: 1757412442, guid: 92d84aa43f8e3c04684e4531c54aea07, type: 3}
+  isLoop: 0
+  oneSecondPerFrame: 12

@@ -44,15 +44,27 @@ namespace InGame
             }
         }
 
+        public void OnEnter()
+        {
+            foreach (var enemy in enemies)
+            {
+                enemy.OnEnter();
+            }
+        }
+
+        public void OnExit()
+        {
+            foreach (var enemy in enemies)
+            {
+                enemy.OnExit();
+            }
+        }
+
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.CompareTag("Player"))
             {
                 CameraManager.Instance.Enqueue(this);
-                foreach (var enemy in enemies)
-                {
-                    enemy.OnEnter();
-                }
             }
         }
         private void OnTriggerExit2D(Collider2D collision)
@@ -60,10 +72,6 @@ namespace InGame
             if (collision.CompareTag("Player"))
             {
                 CameraManager.Instance.DeQueue(this);
-                foreach (var enemy in enemies)
-                {
-                    enemy.OnExit();
-                }
             }
             if (collision.CompareTag("Enemy"))
             {

@@ -51,14 +51,6 @@ namespace InGame.Unit
             }
         }
 
-        private void ColliderAction(List<Collider2D> colliders)
-        {
-            foreach (var collider in colliders)
-            {
-                collider.GetComponent<UnitHit>().Hit(1);
-            }
-        }
-
         protected override void Attack()
         {
             base.Attack();

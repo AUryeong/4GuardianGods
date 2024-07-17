@@ -425,6 +425,7 @@ MonoBehaviour:
   unitMover: {fileID: 1153863497056959079}
   unitAnimator: {fileID: 1153863497056959130}
   unitHit: {fileID: 4592087222654624436}
+  damage: 200
   attackRange: 20
   attackCooltime: 4
   enemyDieEffect: {fileID: 904844601862505720, guid: 64f0a8eccf779c942a1a2d20a97c7e81, type: 3}

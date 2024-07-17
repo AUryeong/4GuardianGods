@@ -16,6 +16,8 @@ namespace InGame.Unit
         private float directionDuration;
         private const float DIRECTION_COOLTIME = 0.2f;
 
+        public float damage;
+
         public float attackRange;
         [SerializeField] protected float attackCooltime;
         protected float attackDuration;
@@ -32,6 +34,7 @@ namespace InGame.Unit
 
         public virtual void OnEnter()
         {
+            attackDuration = attackCooltime;
         }
         
         public virtual void OnExit()
@@ -52,6 +55,13 @@ namespace InGame.Unit
             }
         }
 
+        protected void ColliderAction(List<Collider2D> colliders)
+        {
+            foreach (var collider in colliders)
+            {
+                collider.GetComponent<UnitHit>().Hit(collider.CompareTag("Brush") ? damage : 1);
+            }
+        }
 
         public virtual void OnFixedUpdate()
         {

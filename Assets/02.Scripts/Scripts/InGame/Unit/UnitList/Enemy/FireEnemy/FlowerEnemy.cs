@@ -51,6 +51,7 @@ namespace InGame.Unit
                 return;
 
             lastPlayerPosition = GameManager.Instance.playerUnit.transform.position;
+            targetWarning.transform.position = lastPlayerPosition;
             targetWarning.SetActive(false);
             base.PlayAttack();
         }

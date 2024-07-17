@@ -7,21 +7,12 @@ namespace InGame.Unit
     public class DogEnemy : Enemy
     {
         [SerializeField] private UnitCollider unitCollider;
+
         protected override void Start()
         {
             base.Start();
-            unitAnimator.SetAnimationCallBack(UnitAnimationType.Special, 4, Attack);
+            unitAnimator.SetAnimationCallBack(UnitAnimationType.Special, 5, Attack);
             unitCollider.SetColliderAction(ColliderAction);
-        }
-
-        public override void OnEnter()
-        {
-            base.OnEnter();
-        }
-
-        public override void OnExit()
-        {
-            base.OnExit();
         }
 
         public override void OnFixedUpdate()
@@ -37,14 +28,6 @@ namespace InGame.Unit
             SetFlip();
             unitAnimator.UpdateAnimation(deltaTime);
             unitMover.UpdateMove(deltaTime);
-        }
-
-        private void ColliderAction(List<Collider2D> colliders)
-        {
-            foreach (var collider in colliders)
-            {
-                collider.GetComponent<UnitHit>().Hit(1);
-            }
         }
 
         protected override void Attack()

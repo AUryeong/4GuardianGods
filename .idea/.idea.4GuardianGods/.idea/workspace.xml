@@ -6,40 +6,29 @@
   <component name="ChangeListManager">
     <list default="true" id="15c4927e-747f-412b-a7e4-68b7533b1d2d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.4GuardianGods/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.4GuardianGods/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Resources/Material/EnemySpriteGlow.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Resources/Material/EnemySpriteGlow.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Resources/Prefabs/Enemy/Monster1.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Resources/Prefabs/Enemy/Monster1.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Resources/Prefabs/Enemy/Particle/DieEffect.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Resources/Prefabs/Enemy/Particle/DieEffect.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Resources/Prefabs/Projectile/Attack_Effect2_0.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Resources/Prefabs/Projectile/Attack_Effect2_0.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Resources/Animations/Enemy/FireEnemy/Dog/Attack.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Resources/Animations/Enemy/FireEnemy/Dog/Attack.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Resources/Animations/Projectile/AirSlash.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Resources/Animations/Projectile/AirSlash/AttackEffect.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Resources/Animations/Projectile/AirSlash/AttackEffect.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Resources/Animations/Projectile/AirSlash/Attack_Effect2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Resources/Animations/Projectile/AirSlash/Attack_Effect2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Resources/Animations/Projectile/AirSlash/Attack_Effect2_Emission.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Resources/Animations/Projectile/AirSlash/Attack_Effect2_Emission.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Resources/Prefabs/Enemy/Monster2.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Resources/Prefabs/Enemy/Monster2.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Resources/Prefabs/Enemy/Monster5.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Resources/Prefabs/Enemy/Monster5.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Resources/Prefabs/Enemy/Monster6.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Resources/Prefabs/Enemy/Monster6.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/01.Resources/Scenes/InGame.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Resources/Scenes/InGame.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Resources/Sprites/Effect/Materials/Feather 1.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Resources/Sprites/Effect/Materials/Feather 1.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Resources/Sprites/Map/Tile2/Tile4.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Resources/Sprites/Map/Tile2/Tile4.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Resources/Sprites/Tile Sprite/Tile Pallete.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Resources/Sprites/Tile Sprite/Tile Pallete.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/InGame/Map/Map.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/InGame/Map/Map.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/InGame/SpriteAnimator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/InGame/SpriteAnimator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/InGame/Unit/Projectile/Drawing.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/InGame/Unit/Projectile/Drawing.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/InGame/Unit/Projectile/Projectile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/InGame/Unit/Projectile/Projectile.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/InGame/Unit/UnitCollider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/InGame/Unit/UnitCollider.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/InGame/Unit/UnitHit.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/InGame/Unit/UnitHit.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/InGame/Unit/UnitList/Enemy/Enemy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/InGame/Unit/UnitList/Enemy/Enemy.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/InGame/Unit/UnitList/Enemy/FireEnemy/BirdEnemy.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/InGame/Unit/UnitList/Enemy/FireEnemy/BirdEnemy.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/InGame/Unit/UnitList/Enemy/FireEnemy/ProjectileEnemy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/InGame/Unit/UnitList/Enemy/ProjectileEnemy.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/InGame/Unit/UnitList/Enemy/FireEnemy/ProjectileEnemy.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/InGame/Unit/UnitList/Enemy/ProjectileEnemy.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/InGame/Unit/UnitList/Player/PlayerUnit.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/InGame/Unit/UnitList/Player/PlayerUnit.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/InGame/WarningObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/InGame/WarningObject.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/Managers/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/Managers/GameManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/Managers/SoundManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/Managers/SoundManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/Managers/TileManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/Managers/TileManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/TileBaker.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/TileBaker.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02.Scripts/Shaders/BrushGlowShader.shadergraph" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02.Scripts/Shaders/BrushGlowShader.shadergraph" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02.Scripts/Shaders/SpriteGlowShader.shadergraph" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02.Scripts/Shaders/SpriteGlowShader.shadergraph" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/InGame/Unit/UnitList/Enemy/FireEnemy/ArmEnemy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/InGame/Unit/UnitList/Enemy/FireEnemy/ArmEnemy.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/InGame/Unit/UnitList/Enemy/FireEnemy/CowEnemy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/InGame/Unit/UnitList/Enemy/FireEnemy/CowEnemy.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/InGame/Unit/UnitList/Enemy/FireEnemy/DogEnemy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/InGame/Unit/UnitList/Enemy/FireEnemy/DogEnemy.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/InGame/Unit/UnitList/Enemy/FireEnemy/FlowerEnemy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/InGame/Unit/UnitList/Enemy/FireEnemy/FlowerEnemy.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/Managers/CameraManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/Managers/CameraManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Plugins/Febucci/Text Animator/Extra/Typewriter Sound - Package.unitypackage.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Plugins/Febucci/Text Animator/Integrations/PlayMaker - Integration.unitypackage.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Plugins/Febucci/Text Animator/Integrations/Visual Scripting - Integration.unitypackage.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Sounds/Step_Grass.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Sounds/Step_Grass.mp3.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/Physics2DSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Physics2DSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,6 +66,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.5022971&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -135,10 +125,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="6024">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="6024" />
+      <option name="pid" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -164,7 +154,8 @@
       <workItem from="1720897204266" duration="5570000" />
       <workItem from="1720947981727" duration="12801000" />
       <workItem from="1720980460908" duration="9999000" />
-      <workItem from="1721134012049" duration="22596000" />
+      <workItem from="1721134012049" duration="22860000" />
+      <workItem from="1721245426853" duration="3069000" />
     </task>
     <servers />
   </component>

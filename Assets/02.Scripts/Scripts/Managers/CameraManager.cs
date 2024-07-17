@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class CameraManager : SingletonBehavior<CameraManager>
 {
-
     private class CameraShake
     {
         public float time;
@@ -43,7 +42,10 @@ public class CameraManager : SingletonBehavior<CameraManager>
     {
         playerInMaps.Add(map);
         if (playerInMaps.Count == 1)
+        {
             confiner2D.m_BoundingShape2D = playerInMaps[0].mapCollider;
+            playerInMaps[0].OnEnter();
+        }
     }
 
     public void DeQueue(Map map)
@@ -52,8 +54,12 @@ public class CameraManager : SingletonBehavior<CameraManager>
         if (index < 0) return;
 
         playerInMaps.RemoveAt(index);
+        map.OnExit();
         if (index == 0 && playerInMaps.Count > 0)
+        {
             confiner2D.m_BoundingShape2D = playerInMaps[0].mapCollider;
+            playerInMaps[0].OnEnter();
+        }
     }
 
     public void Shake(float time, float insensity, float power)
@@ -86,7 +92,7 @@ public class CameraManager : SingletonBehavior<CameraManager>
         float power = 0;
         float insensity = 0;
 
-        foreach(var cameraShake in cameraShakes)
+        foreach (var cameraShake in cameraShakes)
         {
             cameraShake.time -= Time.fixedDeltaTime;
             if (cameraShake.time > 0)

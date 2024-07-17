@@ -14,19 +14,6 @@ namespace InGame.Unit
             unitCollider.SetColliderAction(ColliderAction);
         }
 
-        public override void OnFixedUpdate()
-        {
-            base.OnFixedUpdate();
-        }
-
-        private void ColliderAction(List<Collider2D> colliders)
-        {
-            foreach (var collider in colliders)
-            {
-                collider.GetComponent<UnitHit>().Hit(1);
-            }
-        }
-
         protected override void UpdateVelocity()
         {
             unitMover.velocity.x += direction == Direction.Left ? 1 : -1;
