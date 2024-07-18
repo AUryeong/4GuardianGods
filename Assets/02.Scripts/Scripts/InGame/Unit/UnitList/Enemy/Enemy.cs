@@ -22,8 +22,6 @@ namespace InGame.Unit
         [SerializeField] protected float attackCooltime;
         protected float attackDuration;
 
-        [SerializeField] private GameObject enemyDieEffect;
-
         public virtual bool IsAttacking => unitAnimator.IsPlayAnimation(UnitAnimationType.Special);
 
         protected virtual void Start()
@@ -49,10 +47,7 @@ namespace InGame.Unit
         {
             DrawManager.Instance.SetMaxBrush();
             gameObject.SetActive(false);
-            if (enemyDieEffect != null)
-            {
-                Instantiate(enemyDieEffect, transform.position, Quaternion.identity);
-            }
+            Instantiate(GameManager.Instance.dieEffect, transform.position, Quaternion.identity);
         }
 
         protected void ColliderAction(List<Collider2D> colliders)

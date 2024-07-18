@@ -13,6 +13,7 @@ namespace InGame.Unit
     {
         [Header("Value")]
         public bool IsPassPlatform;
+        public bool IsPassOnlyPlatform;
         public Vector2 velocity;
         public float speed;
         public bool IsGround { get; private set; }
@@ -91,6 +92,9 @@ namespace InGame.Unit
                     var ray = Physics2D.Raycast(raycast, moveDir, rayCastDistance, LayerMask.GetMask("Platform", "Brush"));
                     if (ray.collider)
                     {
+                        if (!ray.collider.CompareTag("Brush") && IsPassOnlyPlatform)
+                            continue;
+
                         if (action == null)
                             colliderAction?.Invoke(ray);
                         else

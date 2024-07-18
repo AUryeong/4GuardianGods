@@ -30,6 +30,10 @@ namespace InGame
             }
         }
 
+        public virtual void OnUpdate()
+        {
+        }
+
         public void OnFixedUpdate()
         {
             if (!GameManager.Instance.playerUnit.IsControllable)
@@ -75,7 +79,7 @@ namespace InGame
             }
             if (collision.CompareTag("Enemy"))
             {
-                collision.GetComponent<Enemy>().UnitHit.Die();
+                collision.GetComponent<Enemy>()?.UnitHit?.Die();
             }
         }
     }

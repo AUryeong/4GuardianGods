@@ -8,7 +8,26 @@ namespace InGame.Unit
 {
     public class PlayerUnit : Unit
     {
-        public bool IsControllable { get; private set; } = true;
+        public bool IsControllable
+        {
+            get
+            {
+                return isControllable;
+            }
+            set
+            {
+                isControllable = value;
+                if (!value)
+                {
+                    UnitMover.Rigid.velocity = Vector2.zero;
+                }
+                dashDuration = 0;
+                isRolling = false;
+                unitAnimator.SpriteRenderer.transform.rotation = Quaternion.identity;
+                ResetJump();
+            }
+        }
+        private bool isControllable = true;
         public bool IsWallStanding
         {
             get { return isWallStanding; }
@@ -73,6 +92,10 @@ namespace InGame.Unit
             if (IsControllable)
             {
                 CheckInput();
+            }
+            else
+            {
+                SoundManager.Instance.StopSoundAmbient("Step_Grass");
             }
 
             if (isWallStanding)
@@ -244,7 +267,10 @@ namespace InGame.Unit
         private void UpdateVelocity()
         {
             if (IsWallStanding)
+            {
+                SoundManager.Instance.StopSoundAmbient("Step_Grass");
                 return;
+            }
 
             float inputX = Input.GetAxisRaw("Horizontal");
             if (inputX != 0)

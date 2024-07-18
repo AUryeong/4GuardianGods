@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering.Universal;
 
 public class CameraManager : SingletonBehavior<CameraManager>
 {
@@ -26,8 +27,11 @@ public class CameraManager : SingletonBehavior<CameraManager>
     }
 
     [SerializeField] private CinemachineVirtualCamera virtualCamera;
-    [SerializeField] private CinemachineConfiner2D confiner2D;
+    [SerializeField] private CinemachineTargetGroup targetGroup;
+    private CinemachineConfiner2D confiner2D;
     private CinemachineBasicMultiChannelPerlin channelPerlin;
+    private PixelPerfectCamera pixelPerfectCamera;
+
     private List<CameraShake> cameraShakes = new();
 
     public Map NowMap => playerInMaps.Count <= 0 ? null : playerInMaps[0];
@@ -36,7 +40,34 @@ public class CameraManager : SingletonBehavior<CameraManager>
     protected override void OnCreated()
     {
         base.OnCreated();
+        confiner2D = virtualCamera.GetComponent<CinemachineConfiner2D>();
         channelPerlin = virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        pixelPerfectCamera = MainCamera.GetComponent<PixelPerfectCamera>();
+    }
+
+    private void Update()
+    {
+        if (playerInMaps.Count <= 0) return;
+
+        NowMap.OnUpdate();
+    }
+
+    private void FixedUpdate()
+    {
+        if (playerInMaps.Count <= 0) return;
+
+        UpdateCameraShake();
+        NowMap.OnFixedUpdate();
+    }
+
+    public void EnterBossRoom()
+    {
+        virtualCamera.m_Lens.OrthographicSize = 5.29117f;
+        pixelPerfectCamera.enabled = false;
+        DOTween.To(() => virtualCamera.m_Lens.OrthographicSize, x => virtualCamera.m_Lens.OrthographicSize = x, 7.941176f, 3f)
+            .SetEase(Ease.OutQuad)
+            .SetUpdate(true)
+            .OnComplete(() => pixelPerfectCamera.enabled = true);
     }
 
     public void Enqueue(Map map)
@@ -71,19 +102,6 @@ public class CameraManager : SingletonBehavior<CameraManager>
             insensity = insensity,
             power = power
         });
-    }
-
-    public void SetOrthographic(float size)
-    {
-        DOTween.To(() => virtualCamera.m_Lens.OrthographicSize, x => virtualCamera.m_Lens.OrthographicSize = x, size, 1f).SetEase(Ease.OutQuad).SetUpdate(true);
-    }
-
-    private void FixedUpdate()
-    {
-        if (playerInMaps.Count <= 0) return;
-
-        UpdateCameraShake();
-        NowMap.OnFixedUpdate();
     }
 
     private void UpdateCameraShake()

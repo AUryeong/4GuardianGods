@@ -36,7 +36,7 @@ namespace InGame.Unit
                 default:
                 case UnitType.None:
                 case UnitType.Player:
-                    contactFilter.SetLayerMask(LayerMask.GetMask("Enemy"));
+                    contactFilter.SetLayerMask(LayerMask.GetMask("Enemy", "Boss"));
                     break;
             }
         }
@@ -58,6 +58,9 @@ namespace InGame.Unit
 
         public void UpdateCollider()
         {
+            if (!gameObject.activeInHierarchy)
+                return;
+
             int colliderCount = Collider.OverlapCollider(contactFilter, colliders);
             if (colliderCount <= 0)
                 return;

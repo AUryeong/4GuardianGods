@@ -98,7 +98,7 @@ namespace InGame.Unit
 
             lineRenderer.material.SetInt("_Flash", 1);
             hitDuration = HIT_DURATION;
-            Power = unitHit.Hp;
+            Power = Mathf.Max(unitHit.Hp);
             duration = 0;
         }
 
@@ -119,7 +119,8 @@ namespace InGame.Unit
         {
             foreach (var enemyColldier in colliders)
             {
-                enemyColldier.GetComponent<Enemy>().UnitHit.Hit(Power);
+                enemyColldier.GetComponent<Enemy>()?.UnitHit?.Hit(Power);
+                enemyColldier.GetComponent<Boss>()?.UnitHit?.Hit(Power);
             }
         }
 

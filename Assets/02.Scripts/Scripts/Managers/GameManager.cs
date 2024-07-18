@@ -6,6 +6,7 @@ namespace InGame
     public class GameManager : SingletonBehavior<GameManager>
     {
         public PlayerUnit playerUnit;
+        public GameObject dieEffect;
 
         private void Start()
         {

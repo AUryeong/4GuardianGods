@@ -8,6 +8,19 @@ using UnityEngine.UI;
 
 public static class Utility
 {
+
+    private static System.Random random = new System.Random();
+
+    public static void Shuffle<T>(this IList<T> values)
+    {
+        for (int i = values.Count - 1; i > 0; i--)
+        {
+            int k = random.Next(i + 1);
+            T value = values[k];
+            values[k] = values[i];
+            values[i] = value;
+        }
+    }
     public static T GetEnum<T>(string enumName)
     {
         return (T)Enum.Parse(typeof(T), enumName);

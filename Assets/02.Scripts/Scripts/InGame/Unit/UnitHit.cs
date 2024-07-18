@@ -21,7 +21,7 @@ namespace InGame.Unit
             Hp = maxHp;
         }
 
-        public void Hit(float damage)
+        public virtual void Hit(float damage)
         {
             Hp -= damage;
             hitAction?.Invoke();

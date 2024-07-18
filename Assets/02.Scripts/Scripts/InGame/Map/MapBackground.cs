@@ -32,12 +32,12 @@ namespace InGame
             var bounds = playerInMap.mapCollider.bounds;
             var size = (bounds.center - GameManager.Instance.playerUnit.transform.position) * BACKGROUND_SIZE;
 
-            transform.position = CameraManager.Instance.MainCamera.transform.position;
-            foreach(var obj in backgroundMountains)
+            transform.position = CameraManager.Instance.MainCamera.transform.position + new Vector3(0, 5.29117f - CameraManager.Instance.MainCamera.orthographicSize);
+            foreach (var obj in backgroundMountains)
             {
                 obj.spriteRenderer.transform.position = Vector3.Lerp(obj.spriteRenderer.transform.position,
                     CameraManager.Instance.MainCamera.transform.position +
-                     new Vector3(size.x / bounds.size.x / obj.speed, size.y / bounds.size.y / obj.speed, 10), Time.deltaTime * BACKGROUND_FOLLOW_SPEED * obj.speed);
+                     new Vector3(size.x / bounds.size.x / obj.speed, size.y / bounds.size.y / obj.speed + 5.29117f - CameraManager.Instance.MainCamera.orthographicSize, 10), Time.deltaTime * BACKGROUND_FOLLOW_SPEED * obj.speed);
             }
             foreach (var obj in backgroundObjects)
             {

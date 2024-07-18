@@ -17,5 +17,5 @@ MonoBehaviour:
   - {fileID: 1968810718, guid: 966f2a5829d7558479b593c6ce79a857, type: 3}
   - {fileID: -977243072, guid: 966f2a5829d7558479b593c6ce79a857, type: 3}
   - {fileID: -1411413219, guid: 966f2a5829d7558479b593c6ce79a857, type: 3}
-  isLoop: 0
+  isLoop: 1
   oneSecondPerFrame: 12

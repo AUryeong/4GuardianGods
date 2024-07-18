@@ -30,6 +30,8 @@ namespace InGame
         }
         private float leftBrush;
 
+        private float power;
+
         private float leftBrushAddDuration = 0;
         private float leftBrushShowDuration = 0;
 
@@ -37,7 +39,7 @@ namespace InGame
         private const float UI_REMOVE_DURATION = 1.5f;
 
         private const float MAX_DISTANCE = 20;
-        private const float MIN_DISTANCE = 0.2f;
+        private const float MIN_DISTANCE = 0.1f;
 
         private void Update()
         {
@@ -70,7 +72,7 @@ namespace InGame
                 drawBackground.DOFade(0, 0.5f).SetUpdate(true);
 
                 drawing.Type = DrawingType.Draw;
-                drawing.SetPower(MAX_DISTANCE - leftBrush);
+                drawing.SetPower(power);
 
                 leftBrushAddDuration = BRUSH_ADD_DURATION;
             }
@@ -95,6 +97,8 @@ namespace InGame
                     input
                 };
 
+                power = 0;
+
                 drawing = Instantiate(originDrawing, Vector3.zero, Quaternion.identity);
                 drawing.Type = DrawingType.Drawing;
                 drawing.SetPosition(vectorList);
@@ -103,7 +107,9 @@ namespace InGame
             if (LeftBrush <= 0) return;
             if (Vector2.Distance(vectorList[^1], input) > MIN_DISTANCE)
             {
-                LeftBrush -= Vector2.Distance(vectorList[^1], input);
+                float distance = Vector2.Distance(vectorList[^1], input);
+                LeftBrush -= distance;
+                power += distance;
                 vectorList.Add(input);
 
                 drawing.SetPosition(vectorList);
