@@ -53,6 +53,7 @@ namespace InGame.Unit
             lastPlayerPosition = GameManager.Instance.playerUnit.transform.position;
             targetWarning.transform.position = lastPlayerPosition;
             targetWarning.SetActive(false);
+            SoundManager.Instance.PlaySoundSfx("Enemy_Flower");
             base.PlayAttack();
         }
 

@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &99002461177107075
 Transform:
   m_ObjectHideFlags: 0
@@ -202,12 +202,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad700485f8d11c841a4caeb6034b1f02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
   unitMover: {fileID: 2048928569233295028}
   unitAnimator: {fileID: 2048928569233294921}
   unitHit: {fileID: 3735252032334995047}
+  damage: 0
   attackRange: 500
   attackCooltime: 3
-  enemyDieEffect: {fileID: 904844601862505720, guid: 64f0a8eccf779c942a1a2d20a97c7e81, type: 3}
   targetWarning: {fileID: 99002461177107085}
   projectile: {fileID: 3950166885217841354, guid: 31b11a9c3fc9ec54f883b66f64197baa, type: 3}
 --- !u!114 &3735252032334995047
@@ -237,6 +246,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsPassPlatform: 0
+  IsPassOnlyPlatform: 0
   velocity: {x: 0, y: 0}
   speed: 0
   layCount: 2

@@ -69,7 +69,7 @@ public class SoundManager : SingletonBehavior<SoundManager>
                     .Subscribe(_ =>
                     {
                         if (!audioSource.isPlaying)
-                            sfxAudioSources.PushPool(audioSource);
+                            Destroy(audioSource.gameObject);
                     });
             })
             .CreatePoolObject(2);

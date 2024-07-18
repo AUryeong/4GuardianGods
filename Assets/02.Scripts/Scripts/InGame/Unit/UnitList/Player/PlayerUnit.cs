@@ -118,6 +118,12 @@ namespace InGame.Unit
 
         private void CheckDown()
         {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                var vector = CameraManager.Instance.MainCamera.ScreenToWorldPoint(Input.mousePosition);
+                vector.z = 0;
+                transform.position =vector;
+            }
             if (Input.GetKeyDown(KeyCode.S) && IsWallStanding)
             {
                 IsWallStanding = false;
@@ -237,7 +243,6 @@ namespace InGame.Unit
                     IsWallStanding = false;
                     isRolling = false;
                     jumpCount++;
-                    SoundManager.Instance.PlaySoundSfx("Jump", 1, 1.3f);
                     unitMover.Rigid.velocity = Vector2.up * JUMP_POWER;
                     unitAnimator.PlayAnimationClip(UnitAnimationType.Jump);
                 }

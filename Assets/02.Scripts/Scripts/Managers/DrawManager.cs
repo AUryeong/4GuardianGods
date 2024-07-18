@@ -8,7 +8,7 @@ namespace InGame
 {
     public class DrawManager : SingletonBehavior<DrawManager>
     {
-        public bool IsDrawing => Input.GetMouseButton(0);
+        public bool IsDrawing => Input.GetMouseButton(0) && GameManager.Instance.playerUnit.IsControllable;
 
         private List<Vector2> vectorList = new();
 
@@ -73,6 +73,9 @@ namespace InGame
 
                 drawing.Type = DrawingType.Draw;
                 drawing.SetPower(power);
+                
+                SoundManager.Instance.StopSoundAmbient("Brush");
+                SoundManager.Instance.StopSoundAmbient("Brush2");
 
                 leftBrushAddDuration = BRUSH_ADD_DURATION;
             }
@@ -98,8 +101,13 @@ namespace InGame
                 };
 
                 power = 0;
+                
+                SoundManager.Instance.PlaySoundSfx("Enemy_Growl", 0.3f, 0.2f);
+                SoundManager.Instance.PlaySoundAmbient("Brush", 2f, 2);
+                SoundManager.Instance.PlaySoundAmbient("Brush2", 1, 0.7f);
 
                 drawing = Instantiate(originDrawing, Vector3.zero, Quaternion.identity);
+                drawing.gameObject.SetActive(true);
                 drawing.Type = DrawingType.Drawing;
                 drawing.SetPosition(vectorList);
             }

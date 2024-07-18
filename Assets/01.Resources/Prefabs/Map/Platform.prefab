@@ -693,6 +693,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4097a765c6b835d45b35f7c0f6a24c3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 0
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
   mapCollider: {fileID: 7741780097119409561}
   enemies: []
 --- !u!60 &7741780097119409561

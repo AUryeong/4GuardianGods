@@ -26,7 +26,7 @@ namespace InGame.Unit
             {
                 projectileAnimator.SetAnimationCallBack(ProjectileAnimationType.Start, -1, () =>
                 {
-                    gameObject.SetActive(false);
+                    Destroy(gameObject);
                 });
             }
         }
@@ -41,7 +41,7 @@ namespace InGame.Unit
                 SoundManager.Instance.PlaySoundSfx("Hit_Brush4", 1, 0.8f);
                 CameraManager.Instance.Shake(0.3f, 2, 3f);
             }
-            gameObject.SetActive(false);
+            Destroy(gameObject);
         }
 
         private void ColliderAction(List<Collider2D> colliders)
@@ -72,7 +72,7 @@ namespace InGame.Unit
             if (duration > maxDuration)
             {
                 duration -= maxDuration;
-                gameObject.SetActive(false);
+                Destroy(gameObject);
             }
         }
     }

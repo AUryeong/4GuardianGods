@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,5 +13,10 @@ public class TitleManager : SingletonBehavior<TitleManager>
         base.OnCreated();
         startButton.button.onClick.AddListener(() => SceneManager.LoadScene("InGame"));
         exitButton.button.onClick.AddListener(() => Application.Quit());
+    }
+
+    private void Start()
+    {
+        SoundManager.Instance.PlaySoundAmbient("Birds", 1f);
     }
 }

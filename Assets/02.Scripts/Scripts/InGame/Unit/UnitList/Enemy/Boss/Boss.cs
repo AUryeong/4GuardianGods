@@ -1,43 +1,142 @@
+using System;
 using Cysharp.Threading.Tasks.Triggers;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace InGame.Unit
 {
+    public enum BossAttackType
+    {
+        Move,
+        Summon,
+        EarthBreak,
+        FireBall,
+        Max,
+    }
+
     public class Boss : Unit
     {
-        [SerializeField] private Transform[] bossTransforms;
-
         private float attackDuration;
-        private const float ATTACK_DURATION = 5;
 
-        public bool IsControllbale { get; set; }
+        public bool IsControllable { get; set; }
         private Coroutine attackCoroutine;
 
-        private bool isAttacking;
-        private bool isMoving;
+        private bool IsAttacking => IsUsing.Values.Any(x => x);
+        private Dictionary<BossAttackType, bool> IsUsing = new((int)BossAttackType.Max);
+        private BossAttackType prevType;
+
+        [SerializeField] private ProjectileAnimator wingAnimator;
+
+        [Header(nameof(BossAttackType.Move))]
+        [SerializeField] private Transform[] bossTransforms;
         [SerializeField] private UnitCollider moveCollider;
 
-        private const int PATTERN_COUNT = 1;
+        [Header(nameof(BossAttackType.Summon))]
+        [SerializeField] private Dictionary<EnemyType, Transform> bossMobTransforms;
+
+        [Header(nameof(BossAttackType.EarthBreak))]
+        [SerializeField] private WarningObject earthBreakWarning;
+        [SerializeField] private Projectile earthBreakProjectile;
+        private Vector3 lastEarthBreakPlayerPosition;
+
+        [Header(nameof(BossAttackType.FireBall))]
+        [SerializeField] private Transform[] fireballTransform;
+        [SerializeField] private Projectile fireballProjectile;
+        [SerializeField] private WarningObject fireballWarning;
+
 
         private void Awake()
         {
             unitHit.SetHitAction(HitAction);
             unitMover.SetColliderAction(ColliderAction);
-            unitAnimator.SetAnimationState(UnitAnimationType.Idle);
 
-            moveCollider.SetColliderAction(MoveColliderAction);
+            unitAnimator.SetAnimationState(UnitAnimationType.Idle);
+            unitAnimator.SetAnimationCallBack(UnitAnimationType.Special, 9, SummonSkillAction);
+            unitAnimator.SetAnimationCallBack(UnitAnimationType.Special4, 8, EarthBreakSkillAction);
+
+            moveCollider.SetColliderAction(CheckColliderAction);
+            moveCollider.gameObject.SetActive(false);
+
+            wingAnimator.gameObject.SetActive(false);
+            wingAnimator.SetAnimationState(ProjectileAnimationType.Start);
+
+            for (var type = BossAttackType.Move; type < BossAttackType.Max; type++)
+                IsUsing.TryAdd(type, false);
         }
 
-        protected void MoveColliderAction(List<Collider2D> colliders)
+        private void SetAnimatorFlip()
         {
-            foreach (var collider in colliders)
+            unitAnimator.SpriteRenderer.transform.rotation = Quaternion.identity;
+            unitAnimator.IsFlip = GameManager.Instance.playerUnit.transform.position.x - transform.position.x > 0;
+            wingAnimator.IsFlip = unitAnimator.IsFlip;
+        }
+
+        private void EarthBreakSkillAction()
+        {
+            if (IsUsing[BossAttackType.EarthBreak])
             {
-                if (collider.CompareTag("Player"))
-                    collider.GetComponent<UnitHit>().Hit(1);
+                SoundManager.Instance.StopSoundAmbient("Enemy_Warning");
+
+                var obj = Instantiate(earthBreakProjectile);
+                obj.transform.position = lastEarthBreakPlayerPosition;
+
+                SoundManager.Instance.PlaySoundSfx("Enemy_Dog");
+                SoundManager.Instance.PlaySoundSfx("Enemy_Dog2", 1.2f, 1.2f);
+                SoundManager.Instance.PlaySoundSfx("Enemy_Flower", 0.7f, 1.2f);
+                CameraManager.Instance.Shake(0.4f, 4f, 12f);
+                return;
             }
+        }
+
+        private void SummonSkillAction()
+        {
+            if (!IsControllable)
+            {
+                SoundManager.Instance.PlaySoundSfx("Enemy_Growl", 1, 1.3f);
+                SoundManager.Instance.PlaySoundSfx("Enemy_Flower", 0.7f, 1.2f);
+
+                wingAnimator.gameObject.SetActive(true);
+                wingAnimator.PlayAnimationClip(ProjectileAnimationType.Start);
+                wingAnimator.SetAnimationState(ProjectileAnimationType.Loop);
+                return;
+            }
+
+            if (!IsUsing[BossAttackType.Summon])
+                return;
+
+            SoundManager.Instance.PlaySoundSfx("Enemy_Growl", 1, 1.3f);
+            SoundManager.Instance.PlaySoundSfx("Enemy_Human", 1, 0.5f);
+            SoundManager.Instance.PlaySoundSfx("Enemy_Flower", 0.7f, 1.2f);
+
+            CameraManager.Instance.Shake(1, 3f, 6f);
+            var enemyType = (EnemyType)Random.Range(0, (int)EnemyType.Max);
+            var enemyParent = bossMobTransforms[enemyType];
+
+            foreach (Transform pos in enemyParent)
+                GameManager.Instance.bossMap.CreateEnemy(enemyType, pos.position);
+        }
+
+        private void CheckColliderAction(List<Collider2D> colliders)
+        {
+            foreach (var unitCollider in colliders.Where(unitCollider => unitCollider.CompareTag("Player")))
+            {
+                unitCollider.GetComponent<UnitHit>().Hit(1);
+            }
+        }
+
+        private IEnumerator PatternSummon()
+        {
+            IsUsing[BossAttackType.Summon] = true;
+
+            unitAnimator.PlayAnimationClip(UnitAnimationType.Special);
+            unitAnimator.SetAnimationState(UnitAnimationType.Idle);
+
+            yield return new WaitForSeconds(5);
+
+            CancelAttack();
         }
 
         private void HitAction()
@@ -55,10 +154,12 @@ namespace InGame.Unit
                 if (drawing.Type == DrawingType.Remove)
                     return;
 
-                if (isMoving)
+                if (IsUsing[BossAttackType.Move])
                 {
-                    CameraManager.Instance.Shake(0.2f, 2f, 4f);
+                    CameraManager.Instance.Shake(0.5f, 5f, 12f);
                     drawing.UnitHit.Hit(1000);
+                    unitHit.Hit(1);
+                    CancelAttack();
                 }
                 else
                 {
@@ -69,9 +170,14 @@ namespace InGame.Unit
             }
         }
 
+        public void OnEnter()
+        {
+            UnitAnimator.PlayAnimationClip(UnitAnimationType.Special);
+        }
+
         public void StartAttack()
         {
-            Attack(0);
+            Attack(BossAttackType.Move);
         }
 
         private void CancelAttack()
@@ -79,67 +185,176 @@ namespace InGame.Unit
             if (attackCoroutine != null)
                 StopCoroutine(attackCoroutine);
 
-            isMoving = false;
-            isAttacking = false;
+            var keys = IsUsing.Keys.ToArray();
+            foreach (var key in keys)
+                IsUsing[key] = false;
 
             UnitMover.IsPassPlatform = false;
 
             unitMover.velocity = Vector2.zero;
 
-            unitAnimator.SpriteRenderer.transform.rotation = Quaternion.identity;
-            unitAnimator.IsFlip = GameManager.Instance.playerUnit.transform.position.x - transform.position.x > 0;
+            SetAnimatorFlip();
 
             unitAnimator.SetAnimationState(UnitAnimationType.Idle);
 
             moveCollider.gameObject.SetActive(false);
+            fireballWarning.gameObject.SetActive(false);
         }
 
         public void OnUpdate()
         {
             float deltaTime = Time.deltaTime;
-            if (IsControllbale)
+            if (IsControllable)
             {
                 UpdateAttack(deltaTime);
             }
+
             unitAnimator.UpdateAnimation(deltaTime);
         }
 
         private void UpdateAttack(float deltaTime)
         {
-            if (isAttacking)
+            if (IsAttacking)
                 return;
 
-            attackDuration += deltaTime;
-            if (attackDuration > ATTACK_DURATION)
+            if (attackDuration > 0)
             {
-                attackDuration -= ATTACK_DURATION;
-                Attack(Random.Range(0, PATTERN_COUNT));
+                attackDuration -= deltaTime;
+                if (attackDuration <= 0)
+                {
+                    var attackTypes = new List<BossAttackType>((int)BossAttackType.Max - 1);
+                    for (var attackType = BossAttackType.Move; attackType < BossAttackType.Max; attackType++)
+                    {
+                        if (attackType == prevType)
+                            continue;
+
+                        attackTypes.Add(attackType);
+                    }
+
+                    Attack(attackTypes[Random.Range(0, attackTypes.Count)]);
+                }
             }
         }
 
-        private void Attack(int pattern)
+        private void Attack(BossAttackType patternType)
         {
-            isAttacking = true;
-            switch (pattern)
+            prevType = patternType;
+            switch (patternType)
             {
-                case 0:
+                case BossAttackType.Move:
                     attackCoroutine = StartCoroutine(PatternMove());
+                    attackDuration += 1;
+                    break;
+                case BossAttackType.Summon:
+                    attackCoroutine = StartCoroutine(PatternSummon());
+                    attackDuration += 3;
+                    break;
+                case BossAttackType.EarthBreak:
+                    attackCoroutine = StartCoroutine(PatternEarthBreak());
+                    attackDuration += 3.5f;
+                    break;
+                case BossAttackType.FireBall:
+                    attackCoroutine = StartCoroutine(PatternFireBall());
+                    attackDuration += 3.5f;
                     break;
             }
         }
 
+        private IEnumerator PatternFireBall()
+        {
+            IsUsing[BossAttackType.FireBall] = true;
+
+            CameraManager.Instance.Shake(0.2f, 3f, 2f);
+
+            fireballWarning.SetActive(true);
+
+            SoundManager.Instance.PlaySoundSfx("Enemy_Dog2", 0.6f, 2f);
+            SoundManager.Instance.PlaySoundSfx("Enemy_Bird", 1, 1);
+            yield return new WaitForSeconds(0.2f);
+            SoundManager.Instance.PlaySoundSfx("Enemy_Bird", 1, 1.2f);
+            yield return new WaitForSeconds(0.2f);
+            SoundManager.Instance.PlaySoundSfx("Enemy_Bird", 1, 1.4f);
+            yield return new WaitForSeconds(1);
+
+            unitAnimator.ClearPlayState();
+            unitAnimator.PlayAnimationClip(UnitAnimationType.Walk);
+
+            unitMover.IsPassPlatform = true;
+            
+            foreach (var fireball in fireballTransform)
+            {
+                yield return Move(fireball.position);
+                fireballWarning.SetActive(false);
+                
+                yield return new WaitForSeconds(0.4f);
+                
+                SoundManager.Instance.PlaySoundSfx("Enemy_Human", 1, 1.2f);
+                
+                var dir = (GameManager.Instance.playerUnit.transform.position - transform.position).normalized;
+                float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+
+                var obj = Instantiate(fireballProjectile);
+                obj.velocity = dir;
+                obj.transform.position = transform.position;
+                obj.transform.rotation = Quaternion.Euler(0, 0, angle + 180);
+
+                CameraManager.Instance.Shake(0.2f, 3f, 2f);
+                fireballWarning.SetActive(true);
+            }
+
+            unitMover.IsPassPlatform = false;
+            unitAnimator.SetAnimationState(UnitAnimationType.Idle);
+            CancelAttack();
+        }
+
+        private IEnumerator PatternEarthBreak()
+        {
+            IsUsing[BossAttackType.EarthBreak] = true;
+
+            SoundManager.Instance.PlaySoundSfx("Enemy_Growl", 0.6f, 2f);
+
+            CameraManager.Instance.Shake(0.2f, 3f, 2f);
+
+            unitAnimator.ClearPlayState();
+            unitAnimator.PlayAnimationClip(UnitAnimationType.Walk);
+
+            var playerPosition = GameManager.Instance.playerUnit.transform.position;
+            lastEarthBreakPlayerPosition = playerPosition;
+
+            earthBreakWarning.transform.position = lastEarthBreakPlayerPosition + new Vector3(0, 3.5f, 0);
+            earthBreakWarning.SetActive(true);
+
+            SoundManager.Instance.PlaySoundAmbient("Enemy_Warning", 0.6f);
+
+            unitMover.IsPassPlatform = true;
+            yield return Move(lastEarthBreakPlayerPosition);
+            unitMover.IsPassPlatform = false;
+
+            earthBreakWarning.SetActive(false);
+
+            yield return new WaitForSeconds(0.4f);
+
+            unitAnimator.PlayAnimationClip(UnitAnimationType.Special4);
+            unitAnimator.SetAnimationState(UnitAnimationType.Idle);
+
+            yield return new WaitForSeconds(2);
+
+            CancelAttack();
+        }
+
         private IEnumerator PatternMove()
         {
-            isMoving = true;
+            IsUsing[BossAttackType.Move] = true;
 
             moveCollider.gameObject.SetActive(true);
             moveCollider.ClearColliders();
 
             bossTransforms.Shuffle();
-            unitAnimator.SetAnimationState(UnitAnimationType.Special2);
+            unitAnimator.ClearPlayState();
             for (int i = 0; i < bossTransforms.Length; i++)
             {
                 CameraManager.Instance.Shake(0.2f, 3f, 2f);
+                unitAnimator.PlayAnimationClip(UnitAnimationType.Special2);
                 yield return Move(bossTransforms[i].position);
             }
 
@@ -154,6 +369,8 @@ namespace InGame.Unit
             unitAnimator.IsFlip = false;
             unitAnimator.SpriteRenderer.transform.rotation = Quaternion.Euler(0, 0, angle + 180);
 
+            SoundManager.Instance.PlaySoundSfx("Enemy_Bird", 1, 1.2f);
+
             while (true)
             {
                 float deltaTime = Time.deltaTime;
@@ -167,6 +384,8 @@ namespace InGame.Unit
 
                 yield return null;
             }
+
+            SetAnimatorFlip();
         }
     }
 }

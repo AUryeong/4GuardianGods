@@ -44,7 +44,7 @@ namespace InGame.Unit
         {
             Hp = 0;
             if (dieAction == null)
-                gameObject.SetActive(false);
+                Destroy(gameObject);
             else
                 dieAction.Invoke();
         }

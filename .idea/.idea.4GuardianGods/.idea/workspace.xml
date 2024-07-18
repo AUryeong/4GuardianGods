@@ -6,12 +6,43 @@
   <component name="ChangeListManager">
     <list default="true" id="15c4927e-747f-412b-a7e4-68b7533b1d2d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.4GuardianGods/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.4GuardianGods/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Resources/Animations/Enemy/Boss/Boss1_skill1.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Resources/Animations/Enemy/Boss/Boss1_skill1.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Resources/Animations/Enemy/Boss/Wings/Wing_Idle.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Resources/Animations/Enemy/Boss/Wings/Wing_Idle.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Resources/Material/BossSpriteGlow.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Resources/Material/BossSpriteGlow.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Resources/Prefabs/Enemy/Boss/Boss.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Resources/Prefabs/Enemy/Boss/Boss.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Resources/Prefabs/Enemy/Monster1.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Resources/Prefabs/Enemy/Monster1.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Resources/Prefabs/Enemy/Monster3.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Resources/Prefabs/Enemy/Monster3.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Resources/Prefabs/Enemy/Monster4.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Resources/Prefabs/Enemy/Monster4.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Resources/Prefabs/Map/Platform.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Resources/Prefabs/Map/Platform.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Resources/Prefabs/Warning.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Resources/Prefabs/Warning.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/01.Resources/Scenes/InGame.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Resources/Scenes/InGame.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Resources/Sprites/Tile Sprite/Earth Tile/Earth_Tile.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Resources/Sprites/Tile Sprite/Earth Tile/Earth_Tile.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/01.Resources/Sprites/Tile Sprite/Lava Tile/lava_Tile.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Resources/Sprites/Tile Sprite/Lava Tile/lava_Tile.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Resources/Scenes/Title.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Resources/Scenes/Title.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Resources/Sprites/UI/Title/Button/title_ui.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Resources/Sprites/UI/Title/Button/title_ui.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/01.Resources/Sprites/UI/Title/Button/title_ui_white.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/01.Resources/Sprites/UI/Title/Button/title_ui_white.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/InGame/Map/BossEnterMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/InGame/Map/BossEnterMap.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/InGame/Map/BossMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/InGame/Map/BossMap.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/InGame/Map/Map.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/InGame/Map/Map.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/Managers/CameraManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/Managers/CameraManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/TileBaker.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/TileBaker.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/InGame/SpriteAnimator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/InGame/SpriteAnimator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/InGame/Unit/PoolableUnit.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/InGame/Unit/PoolableUnit.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/InGame/Unit/Projectile/Drawing.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/InGame/Unit/Projectile/Drawing.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/InGame/Unit/Projectile/Projectile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/InGame/Unit/Projectile/Projectile.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/InGame/Unit/UnitHit.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/InGame/Unit/UnitHit.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/InGame/Unit/UnitList/Enemy/Boss/Boss.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/InGame/Unit/UnitList/Enemy/Boss/Boss.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/InGame/Unit/UnitList/Enemy/Enemy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/InGame/Unit/UnitList/Enemy/Enemy.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/InGame/Unit/UnitList/Enemy/FireEnemy/ArmEnemy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/InGame/Unit/UnitList/Enemy/FireEnemy/ArmEnemy.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/InGame/Unit/UnitList/Enemy/FireEnemy/BirdEnemy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/InGame/Unit/UnitList/Enemy/FireEnemy/BirdEnemy.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/InGame/Unit/UnitList/Enemy/FireEnemy/CowEnemy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/InGame/Unit/UnitList/Enemy/FireEnemy/CowEnemy.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/InGame/Unit/UnitList/Enemy/FireEnemy/DogEnemy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/InGame/Unit/UnitList/Enemy/FireEnemy/DogEnemy.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/InGame/Unit/UnitList/Enemy/FireEnemy/FlowerEnemy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/InGame/Unit/UnitList/Enemy/FireEnemy/FlowerEnemy.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/InGame/Unit/UnitList/Player/PlayerUnit.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/InGame/Unit/UnitList/Player/PlayerUnit.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/InGame/WarningObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/InGame/WarningObject.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/Managers/DrawManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/Managers/DrawManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/Managers/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/Managers/GameManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/Managers/SoundManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/Managers/SoundManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/Managers/TitleManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/02.Scripts/Scripts/Managers/TitleManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Plugins/Febucci/Text Animator/Extra/Typewriter Sound - Package.unitypackage.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Plugins/Febucci/Text Animator/Integrations/PlayMaker - Integration.unitypackage.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Plugins/Febucci/Text Animator/Integrations/Visual Scripting - Integration.unitypackage.meta" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +57,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/f712b1dc50b4468388b9c5f95d0d0eaf159e00/ad/0f76f017/Vector3.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/f712b1dc50b4468388b9c5f95d0d0eaf159e00/d2/4c79930b/Debug.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/f712b1dc50b4468388b9c5f95d0d0eaf159e00/f4/35939d04/Gradient.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.core@12.1.11/Runtime/Volume/VolumeProfile.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -138,7 +170,12 @@
       <workItem from="1720947981727" duration="12801000" />
       <workItem from="1720980460908" duration="9999000" />
       <workItem from="1721134012049" duration="22860000" />
-      <workItem from="1721245426853" duration="4386000" />
+      <workItem from="1721245426853" duration="5004000" />
+      <workItem from="1721303442239" duration="850000" />
+      <workItem from="1721306477227" duration="18675000" />
+      <workItem from="1721330509414" duration="228000" />
+      <workItem from="1721330824367" duration="67000" />
+      <workItem from="1721331358993" duration="641000" />
     </task>
     <servers />
   </component>

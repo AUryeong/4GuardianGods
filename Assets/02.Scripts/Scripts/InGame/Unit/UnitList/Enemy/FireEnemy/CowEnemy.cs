@@ -58,6 +58,7 @@ namespace InGame.Unit
             unitCollider.ClearColliders();
             CameraManager.Instance.Shake(0.2f, 2f, 3f);
             dashDuration = DASH_DURATION;
+            SoundManager.Instance.PlaySoundSfx("Enemy_Cow", 1, 0.5f);
         }
     }
 }

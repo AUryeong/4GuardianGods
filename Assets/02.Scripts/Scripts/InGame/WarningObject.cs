@@ -24,7 +24,6 @@ public class WarningObject : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         parent ??= transform.parent;
-        gameObject.SetActive(false);
     }
 
     private void OnEnable()

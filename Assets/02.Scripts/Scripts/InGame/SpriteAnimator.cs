@@ -47,6 +47,10 @@ namespace InGame
                 isFlip = value;
                 spriteRenderer.transform.localScale = isFlip ? new Vector3(-1,1,1) : Vector3.one;
             }
+            get
+            {
+                return isFlip;
+            }
         }
 
         private bool isFlip;
@@ -87,13 +91,18 @@ namespace InGame
                 frame %= animClip.MaxFrame;
         }
 
-        public void Hit()
+        public void ClearPlayState()
+        {
+            playStateClip = null;
+        }
+
+        public virtual void Hit()
         {
             SpriteRenderer.material.SetInt("_Flash", 1);
             isHit = true;
         }
 
-        public void UpdateAnimation(float deltaTime)
+        public virtual void UpdateAnimation(float deltaTime)
         {
             if (!PlayClip) return;
 

@@ -1,12 +1,13 @@
 using InGame.Unit;
 using System.Collections;
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
 namespace InGame
 {
-    public class Map : MonoBehaviour
+    public class Map : SerializedMonoBehaviour
     {
         public PolygonCollider2D mapCollider;
         public List<Enemy> enemies;
@@ -41,6 +42,9 @@ namespace InGame
             
             foreach(var enemy in enemies)
             {
+                if (!enemy)
+                    continue;
+                
                 if (!enemy.gameObject.activeSelf)
                     continue;
                 
@@ -52,6 +56,9 @@ namespace InGame
         {
             foreach (var enemy in enemies)
             {
+                if (!enemy)
+                    continue;
+                
                 enemy.OnEnter();
             }
         }
@@ -60,6 +67,9 @@ namespace InGame
         {
             foreach (var enemy in enemies)
             {
+                if (!enemy)
+                    continue;
+                
                 enemy.OnExit();
             }
         }

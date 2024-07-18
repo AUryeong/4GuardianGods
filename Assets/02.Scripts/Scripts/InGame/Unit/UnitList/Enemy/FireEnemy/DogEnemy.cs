@@ -38,6 +38,8 @@ namespace InGame.Unit
             unitCollider.UpdateCollider();
             
             CameraManager.Instance.Shake(0.2f, 2f,3f);
+            
+            SoundManager.Instance.PlaySoundSfx("Enemy_Dog", 1, 1);
         }
     }
 }

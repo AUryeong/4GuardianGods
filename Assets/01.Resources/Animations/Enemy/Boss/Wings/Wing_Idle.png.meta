@@ -42,7 +42,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -115,7 +115,175 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Wing_Idle_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 101
+        height: 80
+      alignment: 9
+      pivot: {x: 0.4356436, y: 0.1125}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d49029ed25d56c444a9acc5e7198fcb9
+      internalID: -414017144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wing_Idle_1
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 0
+        width: 101
+        height: 80
+      alignment: 9
+      pivot: {x: 0.4356436, y: 0.1125}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42c8f4fcb3a9a3d4a9e403d125130e87
+      internalID: -831644617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wing_Idle_2
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 0
+        width: 101
+        height: 80
+      alignment: 9
+      pivot: {x: 0.4356436, y: 0.1125}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81435701ba38a344b8e32cb5d5ae31a0
+      internalID: 699594001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wing_Idle_3
+      rect:
+        serializedVersion: 2
+        x: 303
+        y: 0
+        width: 101
+        height: 80
+      alignment: 9
+      pivot: {x: 0.4356436, y: 0.1125}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78a03fa2c199f6848b57f9e4f553e6b4
+      internalID: -592033640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wing_Idle_4
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 0
+        width: 101
+        height: 80
+      alignment: 9
+      pivot: {x: 0.4356436, y: 0.1125}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 825bf5881809bf3468772c87bf5621d4
+      internalID: -261157588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wing_Idle_5
+      rect:
+        serializedVersion: 2
+        x: 505
+        y: 0
+        width: 101
+        height: 80
+      alignment: 9
+      pivot: {x: 0.4356436, y: 0.1125}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e64541721822f784b99d1e5d94c1a27f
+      internalID: -1465146311
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wing_Idle_6
+      rect:
+        serializedVersion: 2
+        x: 606
+        y: 0
+        width: 101
+        height: 80
+      alignment: 9
+      pivot: {x: 0.4356436, y: 0.1125}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97e03358e32f95947a346f277f53104f
+      internalID: 1209069935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wing_Idle_7
+      rect:
+        serializedVersion: 2
+        x: 707
+        y: 0
+        width: 101
+        height: 80
+      alignment: 9
+      pivot: {x: 0.4356436, y: 0.1125}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d019dc30f1e8d84db63ee65f8687220
+      internalID: 589843308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -126,7 +294,15 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Wing_Idle_0: -414017144
+      Wing_Idle_1: -831644617
+      Wing_Idle_2: 699594001
+      Wing_Idle_3: -592033640
+      Wing_Idle_4: -261157588
+      Wing_Idle_5: -1465146311
+      Wing_Idle_6: 1209069935
+      Wing_Idle_7: 589843308
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

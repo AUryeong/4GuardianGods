@@ -46,7 +46,7 @@ namespace InGame.Unit
         protected virtual void Die()
         {
             DrawManager.Instance.SetMaxBrush();
-            gameObject.SetActive(false);
+            Destroy(gameObject);
             Instantiate(GameManager.Instance.dieEffect, transform.position, Quaternion.identity);
         }
 

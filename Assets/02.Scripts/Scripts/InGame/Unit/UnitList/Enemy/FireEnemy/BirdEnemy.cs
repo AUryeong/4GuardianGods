@@ -9,7 +9,13 @@ namespace InGame.Unit
             base.Start();
             unitAnimator.SetAnimationCallBack(UnitAnimationType.Special, 3, Attack);
         }
-        
+
+        protected override void Attack()
+        {
+            base.Attack();
+            SoundManager.Instance.PlaySoundSfx("Enemy_Bird", 1, 2);
+        }
+
         protected override void UpdateVelocity()
         {
             float distance = Vector3.Distance(GameManager.Instance.playerUnit.transform.position, transform.position);
