@@ -157,7 +157,7 @@ namespace InGame.Unit
                     lineRenderer.endColor = lineRenderer.endColor.GetChangeAlpha(Mathf.Lerp(0, 1, (REMOVE_DURATION - duration) / REMOVE_DURATION));
                     if (duration >= REMOVE_DURATION)
                     {
-                        Destroy(gameObject);
+                        gameObject.SetActive(false);
                     }
 
                     break;
@@ -169,7 +169,7 @@ namespace InGame.Unit
                         lineRenderer.endColor = lineRenderer.endColor.GetChangeAlpha(Mathf.Lerp(0, 1, (DRAW_DURATION - duration) / DRAW_DURATION));
                         if (duration >= DRAW_DURATION)
                         {
-                            Destroy(gameObject);
+                            gameObject.SetActive(false);
                         }
                     }
 
@@ -182,7 +182,7 @@ namespace InGame.Unit
                         lineRenderer.endColor = lineRenderer.endColor.GetChangeAlpha(Mathf.Lerp(0, 1, (PROJECTILE_DURATION - duration) / PROJECTILE_DURATION));
                         if (duration >= PROJECTILE_DURATION)
                         {
-                            Destroy(gameObject);
+                            gameObject.SetActive(false);
                         }
                     }
                     else

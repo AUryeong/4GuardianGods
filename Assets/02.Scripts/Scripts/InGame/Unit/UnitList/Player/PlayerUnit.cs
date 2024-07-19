@@ -78,6 +78,9 @@ namespace InGame.Unit
                 return;
             IsControllable = false;
             isRolling = false;
+
+            UnitAnimator.ClearPlayState();
+            unitAnimator.PlayAnimationClip(UnitAnimationType.Special4);
             ResetJump();
 
             UnitAnimator.Hit();
@@ -118,6 +121,19 @@ namespace InGame.Unit
 
         private void CheckDown()
         {
+            if (Input.GetKeyDown(KeyCode.N))
+            {
+                GameManager.Instance.bossMap.boss.UnitHit.Hp = 0;
+                GameManager.Instance.bossMap.boss.UnitHit.Hit(1);
+            }
+            if (Input.GetKeyDown(KeyCode.B))
+            {
+                transform.position = new Vector3(241.5f,113.5f);
+            }
+            if (Input.GetKeyDown(KeyCode.V))
+            {
+                UnitHit.SetHpMax();
+            }
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 var vector = CameraManager.Instance.MainCamera.ScreenToWorldPoint(Input.mousePosition);

@@ -19,7 +19,7 @@ namespace InGame
     }
     public class BossMap : Map
     {
-        [SerializeField] private Boss boss;
+        public Boss boss;
         [SerializeField] private GameObject tileMapBackground;
         [FormerlySerializedAs("tilemapDefense")]
         [SerializeField] private GameObject tileMapDefense;

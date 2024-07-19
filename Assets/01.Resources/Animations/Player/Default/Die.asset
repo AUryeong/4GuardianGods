@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c948795284d49e6854533cc6ba40e0f, type: 3}
+  m_Name: Die
+  m_EditorClassIdentifier: 
+  animations:
+  - {fileID: 1316326863, guid: 25536ff41dc4c6f409617649d518595f, type: 3}
+  - {fileID: 1710743560, guid: 25536ff41dc4c6f409617649d518595f, type: 3}
+  - {fileID: -1382390887, guid: 25536ff41dc4c6f409617649d518595f, type: 3}
+  - {fileID: -1458609448, guid: 25536ff41dc4c6f409617649d518595f, type: 3}
+  - {fileID: 1970291702, guid: 25536ff41dc4c6f409617649d518595f, type: 3}
+  - {fileID: -112407866, guid: 25536ff41dc4c6f409617649d518595f, type: 3}
+  isLoop: 0
+  oneSecondPerFrame: 12

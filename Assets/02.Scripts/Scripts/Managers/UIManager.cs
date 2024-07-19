@@ -6,6 +6,7 @@ namespace InGame
 {
     public class UIManager : SingletonBehavior<UIManager>
     {
+        [SerializeField] private SpriteRenderer sceneBlackSpriteRenderer;
         [SerializeField] private SpriteRenderer hitSpriteRenderer;
         private Tweener tweener;
 
@@ -13,6 +14,20 @@ namespace InGame
         {
             base.OnCreated();
             hitSpriteRenderer.color = Color.red;
+        }
+
+        private void Start()
+        {
+            sceneBlackSpriteRenderer.DOFade(0, 2).OnComplete(() => sceneBlackSpriteRenderer.gameObject.SetActive(false));
+        }
+
+        public void BossDie()
+        {
+            sceneBlackSpriteRenderer.transform.position = GameManager.Instance.playerUnit.transform.position;
+            sceneBlackSpriteRenderer.gameObject.SetActive(true);
+            sceneBlackSpriteRenderer.DOFade(1, 2);
+
+            SceneManager.LoadScene("Title");
         }
 
         public void Hit()
@@ -36,7 +51,7 @@ namespace InGame
         {
             if (Time.timeScale <= 0)
                 return;
-            
+
             tweener?.Kill();
             CameraManager.Instance.Shake(1, 5, 10f);
 
@@ -53,13 +68,13 @@ namespace InGame
             });
             sequence.Append(hitSpriteRenderer.DOFade(0, 0.2f).SetEase(Ease.Linear).SetUpdate(true).SetLoops(5, LoopType.Yoyo));
             sequence.AppendInterval(1.1f);
-            
+
             sequence.Append(hitSpriteRenderer.DOFade(0.8f, 1));
             sequence.AppendInterval(2f);
-            
+
             sequence.Append(hitSpriteRenderer.DOColor(Color.black, 1));
             sequence.AppendInterval(1f);
-            
+
             sequence.AppendCallback(() =>
             {
                 Time.timeScale = 1;

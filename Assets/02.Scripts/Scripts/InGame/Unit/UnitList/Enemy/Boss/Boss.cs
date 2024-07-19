@@ -51,20 +51,42 @@ namespace InGame.Unit
         private void Awake()
         {
             unitHit.SetHitAction(HitAction);
+            unitHit.SetDieAction(DieAction);
             unitMover.SetColliderAction(ColliderAction);
 
             unitAnimator.SetAnimationState(UnitAnimationType.Idle);
             unitAnimator.SetAnimationCallBack(UnitAnimationType.Special, 9, SummonSkillAction);
             unitAnimator.SetAnimationCallBack(UnitAnimationType.Special4, 8, EarthBreakSkillAction);
+            unitAnimator.SetAnimationCallBack(UnitAnimationType.Special5, -1, () => UIManager.Instance.BossDie());
 
             moveCollider.SetColliderAction(CheckColliderAction);
             moveCollider.gameObject.SetActive(false);
 
             wingAnimator.gameObject.SetActive(false);
             wingAnimator.SetAnimationState(ProjectileAnimationType.Start);
+            wingAnimator.SetAnimationCallBack(ProjectileAnimationType.End, -1, () => wingAnimator.gameObject.SetActive(false));
 
             for (var type = BossAttackType.Move; type < BossAttackType.Max; type++)
                 IsUsing.TryAdd(type, false);
+        }
+
+        private void DieAction()
+        {
+            if (!IsControllable)
+                return;
+
+            CancelAttack();
+            IsControllable = false;
+
+            SoundManager.Instance.PlaySoundSfx("Enemy_Growl", 1, 1.3f);
+
+            CameraManager.Instance.Shake(2, 4f, 15f);
+
+            unitAnimator.ClearPlayState();
+            unitAnimator.PlayAnimationClip(UnitAnimationType.Special5);
+
+            wingAnimator.ClearPlayState();
+            wingAnimator.PlayAnimationClip(ProjectileAnimationType.End);
         }
 
         private void SetAnimatorFlip()
@@ -294,6 +316,7 @@ namespace InGame.Unit
                 float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
 
                 var obj = Instantiate(fireballProjectile);
+                obj.gameObject.SetActive(true);
                 obj.velocity = dir;
                 obj.transform.position = transform.position;
                 obj.transform.rotation = Quaternion.Euler(0, 0, angle + 180);

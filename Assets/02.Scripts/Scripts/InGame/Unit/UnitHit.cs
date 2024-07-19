@@ -48,5 +48,10 @@ namespace InGame.Unit
             else
                 dieAction.Invoke();
         }
+
+        public void SetHpMax()
+        {
+            Hp = maxHp;
+        }
     }
 }
