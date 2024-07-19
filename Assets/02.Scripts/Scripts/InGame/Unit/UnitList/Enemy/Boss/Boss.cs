@@ -302,8 +302,9 @@ namespace InGame.Unit
             unitAnimator.PlayAnimationClip(UnitAnimationType.Walk);
 
             unitMover.IsPassPlatform = true;
-            
-            foreach (var fireball in fireballTransform)
+
+            var trans = Random.Range(0, 2) == 0 ? fireballTransform : fireballTransform.Reverse(); 
+            foreach (var fireball in trans)
             {
                 yield return Move(fireball.position);
                 fireballWarning.SetActive(false);
