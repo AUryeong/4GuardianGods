@@ -25,9 +25,10 @@ namespace InGame
         {
             sceneBlackSpriteRenderer.transform.position = GameManager.Instance.playerUnit.transform.position;
             sceneBlackSpriteRenderer.gameObject.SetActive(true);
-            sceneBlackSpriteRenderer.DOFade(1, 2);
-
-            SceneManager.LoadScene("Title");
+            sceneBlackSpriteRenderer.DOFade(1, 2).OnComplete(() =>
+            {
+                SceneManager.LoadScene("Title");
+            });
         }
 
         public void Hit()
