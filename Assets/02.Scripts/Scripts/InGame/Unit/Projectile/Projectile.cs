@@ -7,6 +7,7 @@ namespace InGame.Unit
     public class Projectile : PoolableUnit<Projectile>
     {
         [SerializeField] private ProjectileAnimator projectileAnimator;
+        public ProjectileAnimator ProjectileAnimator => projectileAnimator;
         [SerializeField] private UnitCollider unitCollider;
         [SerializeField] private UnitMover unitMover;
 
@@ -22,6 +23,7 @@ namespace InGame.Unit
             unitMover.SetColliderAction(ColliderAction);
             unitCollider.SetColliderAction(ColliderAction);
             projectileAnimator.PlayAnimationClip(ProjectileAnimationType.Start);
+            projectileAnimator.SetAnimationState(ProjectileAnimationType.Loop);
             if (isOnce)
             {
                 projectileAnimator.SetAnimationCallBack(ProjectileAnimationType.Start, -1, () =>

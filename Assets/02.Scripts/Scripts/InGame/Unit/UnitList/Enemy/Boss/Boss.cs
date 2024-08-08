@@ -14,6 +14,7 @@ namespace InGame.Unit
         Summon,
         EarthBreak,
         FireBall,
+        Laser,
         Max,
     }
 
@@ -46,6 +47,10 @@ namespace InGame.Unit
         [SerializeField] private Transform[] fireballTransform;
         [SerializeField] private Projectile fireballProjectile;
         [SerializeField] private WarningObject fireballWarning;
+
+        [Header(nameof(BossAttackType.Laser))]
+        [SerializeField] private WarningObject[] laserWarning;
+        [SerializeField] private Projectile laserProjectile;
 
 
         private void Awake()
@@ -126,19 +131,20 @@ namespace InGame.Unit
                 return;
             }
 
-            if (!IsUsing[BossAttackType.Summon])
+            if (IsUsing[BossAttackType.Summon])
+            {
+                SoundManager.Instance.PlaySoundSfx("Enemy_Growl", 1, 1.3f);
+                SoundManager.Instance.PlaySoundSfx("Enemy_Human", 1, 0.5f);
+                SoundManager.Instance.PlaySoundSfx("Enemy_Flower", 0.7f, 1.2f);
+
+                CameraManager.Instance.Shake(1, 3f, 6f);
+                var enemyType = (EnemyType)Random.Range(0, (int)EnemyType.Max);
+                var enemyParent = bossMobTransforms[enemyType];
+
+                foreach (Transform pos in enemyParent)
+                    GameManager.Instance.bossMap.CreateEnemy(enemyType, pos.position);
                 return;
-
-            SoundManager.Instance.PlaySoundSfx("Enemy_Growl", 1, 1.3f);
-            SoundManager.Instance.PlaySoundSfx("Enemy_Human", 1, 0.5f);
-            SoundManager.Instance.PlaySoundSfx("Enemy_Flower", 0.7f, 1.2f);
-
-            CameraManager.Instance.Shake(1, 3f, 6f);
-            var enemyType = (EnemyType)Random.Range(0, (int)EnemyType.Max);
-            var enemyParent = bossMobTransforms[enemyType];
-
-            foreach (Transform pos in enemyParent)
-                GameManager.Instance.bossMap.CreateEnemy(enemyType, pos.position);
+            }
         }
 
         private void CheckColliderAction(List<Collider2D> colliders)
@@ -221,6 +227,10 @@ namespace InGame.Unit
 
             moveCollider.gameObject.SetActive(false);
             fireballWarning.gameObject.SetActive(false);
+            foreach (var laser in laserWarning) 
+            {
+                laser.gameObject.SetActive(false);
+            }
         }
 
         public void OnUpdate()
@@ -279,7 +289,83 @@ namespace InGame.Unit
                     attackCoroutine = StartCoroutine(PatternFireBall());
                     attackDuration += 3.5f;
                     break;
+                case BossAttackType.Laser:
+                    attackCoroutine = StartCoroutine(PatternLaser());
+                    attackDuration += 5f;
+                    break;
             }
+        }
+
+        private IEnumerator PatternLaser()
+        {
+            IsUsing[BossAttackType.Laser] = true;
+
+            unitMover.IsPassPlatform = true;
+            yield return Move(bossTransforms[4].position);
+
+            unitAnimator.ClearPlayState();
+            unitAnimator.PlayAnimationClip(UnitAnimationType.Special4);
+
+            laserWarning[0].SetActive(true);
+            yield return new WaitForSeconds(2);
+
+            List<Projectile> lasers = new List<Projectile>();
+
+            laserWarning[0].SetActive(false);
+            yield return new WaitForSeconds(0.4f);
+            var laser = Instantiate(laserProjectile);
+            laser.transform.position = laserWarning[0].transform.position + new Vector3(0, -10);
+            laser.transform.rotation = Quaternion.identity;
+            laser.ProjectileAnimator.PlayAnimationClip(ProjectileAnimationType.Start);
+            laser.ProjectileAnimator.SetAnimationState(ProjectileAnimationType.Loop);
+
+            lasers.Add(laser);
+
+            laserWarning[1].SetActive(true);
+            laserWarning[2].SetActive(true);
+            yield return new WaitForSeconds(2f);
+
+            laserWarning[1].SetActive(false);
+            laserWarning[2].SetActive(false);
+            yield return new WaitForSeconds(0.4f);
+            laser = Instantiate(laserProjectile);
+            laser.transform.position = laserWarning[1].transform.position + new Vector3(0, -10);
+            laser.transform.rotation = Quaternion.identity;
+            laser.ProjectileAnimator.PlayAnimationClip(ProjectileAnimationType.Start);
+            laser.ProjectileAnimator.SetAnimationState(ProjectileAnimationType.Loop);
+
+            lasers.Add(laser);
+
+            laser = Instantiate(laserProjectile);
+            laser.transform.position = laserWarning[2].transform.position + new Vector3(0, -10);
+            laser.transform.rotation = Quaternion.identity;
+            laser.ProjectileAnimator.PlayAnimationClip(ProjectileAnimationType.Start);
+            laser.ProjectileAnimator.SetAnimationState(ProjectileAnimationType.Loop);
+
+            lasers.Add(laser);
+
+            yield return new WaitForSeconds(2);
+
+            foreach(var disableLaser in lasers)
+            {
+                disableLaser.ProjectileAnimator.SetAnimationCallBack(ProjectileAnimationType.End, -1, () => disableLaser.gameObject.SetActive(false));
+                disableLaser.ProjectileAnimator.PlayAnimationClip(ProjectileAnimationType.End);
+            }
+
+            unitMover.IsPassPlatform = false;
+            yield return new WaitForSeconds(2);
+
+            CancelAttack();
+        }
+        private IEnumerator CreateLaser(int index)
+        {
+            laserWarning[index].SetActive(false);
+            yield return new WaitForSeconds(0.4f);
+            var laser = Instantiate(laserProjectile);
+            laser.transform.position = laserWarning[index].transform.position + new Vector3(0, -10);
+            laser.transform.rotation = Quaternion.identity;
+            laser.ProjectileAnimator.PlayAnimationClip(ProjectileAnimationType.Start);
+            laser.ProjectileAnimator.SetAnimationState(ProjectileAnimationType.Loop);
         }
 
         private IEnumerator PatternFireBall()

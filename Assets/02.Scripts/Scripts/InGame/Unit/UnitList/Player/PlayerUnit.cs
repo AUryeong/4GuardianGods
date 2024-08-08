@@ -25,6 +25,7 @@ namespace InGame.Unit
                 isRolling = false;
                 unitAnimator.SpriteRenderer.transform.rotation = Quaternion.identity;
                 ResetJump();
+                UpdateAnimState();
             }
         }
         private bool isControllable = true;
@@ -79,11 +80,11 @@ namespace InGame.Unit
             IsControllable = false;
             isRolling = false;
 
-            UnitAnimator.ClearPlayState();
-            unitAnimator.PlayAnimationClip(UnitAnimationType.Special4);
             ResetJump();
 
             UnitAnimator.Hit();
+            UnitAnimator.ClearPlayState();
+            unitAnimator.PlayAnimationClip(UnitAnimationType.Special4);
 
             UIManager.Instance.Die();
         }
@@ -95,6 +96,7 @@ namespace InGame.Unit
             if (IsControllable)
             {
                 CheckInput();
+                UpdateAnimState();
             }
             else
             {
@@ -106,7 +108,6 @@ namespace InGame.Unit
                 unitMover.Rigid.velocity = Vector2.zero;
             }
 
-            UpdateAnimState();
             unitAnimator.UpdateAnimation(deltaTime);
             unitMover.UpdateMove(deltaTime);
         }
